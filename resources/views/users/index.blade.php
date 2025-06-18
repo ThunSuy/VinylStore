@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>BookSaw - Free Book Store HTML CSS Template</title>
+    <title>Vinyl Store</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,10 +15,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/normalize.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/users/normalize.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('icomoon/icomoon.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/vendor.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/users/vendor.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/users/style.css') }}">
 
 </head>
 
@@ -92,18 +92,17 @@
                                 <ul class="menu-list">
                                     <li class="menu-item active"><a href="#home">Home</a></li>
                                     <li class="menu-item has-sub">
-                                        <a href="#pages" class="nav-link">Pages</a>
+                                        <a href="#pages" class="nav-link">Genres</a>
 
                                         <ul>
-                                            <li class="active"><a href="index.html">Home</a></li>
-                                            <li><a href="index.html">About</a></li>
-                                            <li><a href="index.html">Styles</a></li>
-                                            <li><a href="index.html">Blog</a></li>
-                                            <li><a href="index.html">Post Single</a></li>
-                                            <li><a href="index.html">Our Store</a></li>
-                                            <li><a href="index.html">Product Single</a></li>
-                                            <li><a href="index.html">Contact</a></li>
-                                            <li><a href="index.html">Thank You</a></li>
+                                            <li class="active"><a href="">ALL</a></li>
+                                            @foreach ($genres as $genre)
+                                                <li>
+                                                    <a href="#genre-{{ $genre->slug ?? $genre->genre_id }}">
+                                                        {{ $genre->genre_name }}
+                                                    </a>
+                                                </li>
+                                            @endforeach
                                         </ul>
 
                                     </li>
@@ -111,7 +110,7 @@
                                     <li class="menu-item"><a href="#popular-books" class="nav-link">Popular</a></li>
                                     <li class="menu-item"><a href="#special-offer" class="nav-link">Offer</a></li>
                                     <li class="menu-item"><a href="#latest-blog" class="nav-link">Articles</a></li>
-                                    <li class="menu-item"><a href="#download-app" class="nav-link">Download App</a>
+                                    {{-- <li class="menu-item"><a href="#download-app" class="nav-link">Download App</a> --}}
                                     </li>
                                 </ul>
 
@@ -1060,7 +1059,7 @@
         </div>
     </section>
 
-    <section id="download-app" class="leaf-pattern-overlay">
+    {{-- <section id="download-app" class="leaf-pattern-overlay">
         <div class="corner-pattern-overlay"></div>
         <div class="container">
             <div class="row justify-content-center">
@@ -1090,7 +1089,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
     <footer id="footer">
         <div class="container">
@@ -1247,12 +1246,12 @@
         </div>
     </div>
 
-    <script src="js/jquery-1.11.0.min.js"></script>
+    <script src="{{ asset('js/users/jquery-1.11.0.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
     </script>
-    <script src="js/plugins.js"></script>
-    <script src="js/script.js"></script>
+    <script src="{{ asset('js/users/plugins.js') }}"></script>
+    <script src="{{ asset('js/users/script.js') }}"></script>
 
 </body>
 

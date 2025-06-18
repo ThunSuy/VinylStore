@@ -21,3 +21,4 @@ use App\Http\Controllers\UserController;
 
 
 Route::get('/', [UserController::class, 'index']);
+Route::get('/index', [UserController::class, 'index']);
