@@ -100,6 +100,7 @@ Version: 1.1
   --bs-gutter-x: 2.5rem;
 }
 
+
 .display-1,
 .display-2,
 .display-3,
@@ -1697,7 +1698,7 @@ img.post-image {
 /* -- Top Menu Part
 --------------------------------------------------------------*/
 .top-content {
-  padding: 15px 0;
+  padding: 10px 0;
   border-bottom: 1px solid #E0E0E0;
 }
 
@@ -1778,6 +1779,16 @@ img.post-image {
   width: 300px;
 }
 
+#header-wrap.fixed-top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  background: #f3f2ec; /* hoặc có thể là background: transparent; */
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
 #header-wrap .search-bar form {
   margin: 0;
 }
@@ -1823,7 +1834,7 @@ img.post-image {
 /* - Main Navigation
 ------------------------------------------------------------- */
 #header {
-  padding: 20px 0;
+  padding: 10px 0;
   border-bottom: 1px solid #E0E0E0;
   background-color: #f3f2ec;
 }
@@ -1841,7 +1852,7 @@ img.post-image {
 /*----- Billboard
 --------------------------------------------------------------*/
 #billboard .main-slider {
-  padding: 80px 0;
+  padding: 30px 0;
 }
 
 .main-slider .slider-item {

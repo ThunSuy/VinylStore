@@ -49,13 +49,13 @@
                     </div>
                     <div class="col-md-6">
                         <div class="right-element">
-                            <a href="#" class="user-account for-buy"><i
-                                    class="icon icon-user"></i><span>Account</span></a>
+
+
                             <a href="#" class="cart for-buy"><i class="icon icon-clipboard"></i><span>Cart:(0
                                     $)</span></a>
-
+                            <a href="#" class="user-account for-buy"><i
+                                    class="icon icon-user"></i><span>Account</span></a>
                             <div class="action-menu">
-
                                 <div class="search-bar">
                                     <a href="#" class="search-button search-toggle" data-selector="#header-wrap">
                                         <i class="icon icon-search"></i>
@@ -65,6 +65,7 @@
                                             type="search">
                                     </form>
                                 </div>
+
                             </div>
 
                         </div><!--top-right-->
@@ -106,8 +107,8 @@
                                         </ul>
 
                                     </li>
-                                    <li class="menu-item"><a href="#featured-books" class="nav-link">Featured</a></li>
-                                    <li class="menu-item"><a href="#popular-books" class="nav-link">Popular</a></li>
+                                    <li class="menu-item"><a href="#featured" class="nav-link">Featured</a></li>
+                                    <li class="menu-item"><a href="#popular" class="nav-link">Popular</a></li>
                                     <li class="menu-item"><a href="#special-offer" class="nav-link">Offer</a></li>
                                     <li class="menu-item"><a href="#latest-blog" class="nav-link">Articles</a></li>
                                     {{-- <li class="menu-item"><a href="#download-app" class="nav-link">Download App</a> --}}
@@ -144,30 +145,37 @@
                     <div class="main-slider pattern-overlay">
                         <div class="slider-item">
                             <div class="banner-content">
-                                <h2 class="banner-title">Life of the Wild</h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu feugiat amet, libero
-                                    ipsum enim pharetra hac. Urna commodo, lacus ut magna velit eleifend. Amet, quis
-                                    urna, a eu.</p>
+                                <h2 class="banner-title">Fearless Gold</h2>
+                                <p>"Fearless Gold" was an album full of magic and curiosity, the bliss and devastation
+                                    of
+                                    youth. It was the diary of the adventures and explorations of a teenage girl who
+                                    was learning tiny lessons with every new crack in the facade of the fairytale ending
+                                    she'd been shown in the movies. I'm thrilled to tell you that my new version of
+                                    Fearless is done and will be with you soon.
+                                </p>
                                 <div class="btn-wrap">
                                     <a href="#" class="btn btn-outline-accent btn-accent-arrow">Read More<i
                                             class="icon icon-ns-arrow-right"></i></a>
                                 </div>
                             </div><!--banner-content-->
-                            <img src="images/main-banner1.jpg" alt="banner" class="banner-image">
+                            <img src="images/Fearless-TaylorSwift.jpg" alt="banner" class="banner-image">
                         </div><!--slider-item-->
 
                         <div class="slider-item">
                             <div class="banner-content">
-                                <h2 class="banner-title">Birds gonna be Happy</h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu feugiat amet, libero
-                                    ipsum enim pharetra hac. Urna commodo, lacus ut magna velit eleifend. Amet, quis
-                                    urna, a eu.</p>
+                                <h2 class="banner-title">Beleive</h2>
+                                <p>Internationally renowned Italian tenor Andrea Bocelli releases breathtaking new
+                                    album, Believe, celebrating the power of music to soothe the soul. It follows his
+                                    record-breaking `Music for Hope' performance at Easter from Milan's historic Duomo
+                                    cathedral. Features classic favorites, a previously unreleased track from late
+                                    Italian composer Ennio Morricone, Gratia Plena (from acclaimed film Fatima), duets
+                                    w/ Alison Krauss </p>
                                 <div class="btn-wrap">
                                     <a href="#" class="btn btn-outline-accent btn-accent-arrow">Read More<i
                                             class="icon icon-ns-arrow-right"></i></a>
                                 </div>
                             </div><!--banner-content-->
-                            <img src="images/main-banner2.jpg" alt="banner" class="banner-image">
+                            <img src="images/Believe-AndreaBocelli.jpg" alt="banner" class="banner-image">
                         </div><!--slider-item-->
 
                     </div><!--slider-->
@@ -182,7 +190,7 @@
 
     </section>
 
-    <section id="client-holder" data-aos="fade-up">
+    {{-- <section id="client-holder" data-aos="fade-up">
         <div class="container">
             <div class="row">
                 <div class="inner-content">
@@ -198,9 +206,9 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
-    <section id="featured-books" class="py-5 my-5">
+    <section id="featured" class="py-5 my-5">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -209,7 +217,7 @@
                         <div class="title">
                             <span>Some quality items</span>
                         </div>
-                        <h2 class="section-title">Featured Books</h2>
+                        <h2 class="section-title">Featured Disc</h2>
                     </div>
 
                     <div class="product-list" data-aos="fade-up">
@@ -290,7 +298,7 @@
                 <div class="col-md-12">
 
                     <div class="btn-wrap align-right">
-                        <a href="#" class="btn-accent-arrow">View all products <i
+                        <a href="#featured" class="btn-accent-arrow">View all products <i
                                 class="icon icon-ns-arrow-right"></i></a>
                     </div>
 
