@@ -1596,7 +1596,7 @@ button {
   font-weight: 500;
   line-height: 1;
   position: relative;
-  margin-bottom: 75px;
+  margin-bottom: 45px;
 }
 
 .section-title.divider {
@@ -1698,7 +1698,7 @@ img.post-image {
 /* -- Top Menu Part
 --------------------------------------------------------------*/
 .top-content {
-  padding: 10px 0;
+  padding: 5px 0;
   border-bottom: 1px solid #E0E0E0;
 }
 
@@ -1779,19 +1779,37 @@ img.post-image {
   width: 300px;
 }
 
+#header-wrap {
+  position: relative;
+  z-index: 2000;
+  transition: transform 0.4s cubic-bezier(0.4,0,0.2,1), box-shadow 0.3s;
+  transform: translateY(0); 
+}
+
 #header-wrap.fixed-top {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 999;
+  z-index: 999; 
   background: #f3f2ec; /* hoặc có thể là background: transparent; */
+  /* transform: translateY(0); */
   box-shadow: 0 2px 10px rgba(0,0,0,0.05);
 }
+
+/* #header-wrap.fixed-top.fixed-animate {
+  transform: translateY(-100%);
+}
+
+#header-wrap.fixed-top:not(.fixed-animate) {
+  transform: translateY(0); */
+/* } */
 
 #header-wrap .search-bar form {
   margin: 0;
 }
+
+
 
 #header-wrap .search-box .search-input {
   width: 250px;
@@ -1834,7 +1852,7 @@ img.post-image {
 /* - Main Navigation
 ------------------------------------------------------------- */
 #header {
-  padding: 10px 0;
+  padding-bottom: 5px;
   border-bottom: 1px solid #E0E0E0;
   background-color: #f3f2ec;
 }
@@ -1847,6 +1865,13 @@ img.post-image {
 
 #header .menu-list a.active {
   color: var(--accent-color);
+}
+
+.main-menu .menu-list > li.has-sub > ul {
+  position: absolute;
+  z-index: 1002;
+  /* background: #fff;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08); */
 }
 
 /*----- Billboard
@@ -2112,6 +2137,8 @@ span.prev-price {
   padding-right: 10px;
   text-decoration: line-through;
 }
+
+
 
 
 /*----- Subscribe Section
@@ -2429,6 +2456,23 @@ footer#footer {
   color: #74642F;
   font-size: 1.3em;
 }
+
+.artist-card:hover {
+    box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+    transform: translateY(-4px) scale(1.03);
+    transition: all 0.2s;
+}
+
+.product-card .badge.bg-warning {
+    font-size: 0.9rem;
+    padding: 0.5em 1em;
+    border-radius: 0.5em;
+}
+
+.breadcrumb-item {
+  font-weight: bold;
+}
+
 
 @media screen and (max-width: 768px) {
   .products-grid .product-item {

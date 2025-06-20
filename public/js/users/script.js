@@ -81,12 +81,34 @@
     });
 
     $('.main-slider').slick({
-      autoplay: false,
+      autoplay: true,
       autoplaySpeed: 4000,
       fade: true,
       dots: true,
       prevArrow: $('.prev'),
       nextArrow: $('.next'),
+    });
+
+    // $('#header-wrap').addClass('fixed-top');
+    // setTimeout(function () {
+    //   $('#header-wrap').addClass('fixed-animate');
+    // }, 1000);
+
+    // // Khi cuộn lên:
+    // $('#header-wrap').removeClass('fixed-animate');
+    // setTimeout(function () {
+    //   $('#header-wrap').removeClass('fixed-top');
+    // }, 1000);
+
+    document.querySelectorAll('.menu-list > li > a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        // Xóa active ở tất cả các menu item
+        document.querySelectorAll('.menu-list > li').forEach(function (li) {
+          li.classList.remove('active');
+        });
+        // Đặt active cho menu item vừa click
+        this.parentElement.classList.add('active');
+      });
     });
 
     $('.product-grid').slick({
