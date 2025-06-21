@@ -23,7 +23,7 @@
                                 style="aspect-ratio:1/1;object-fit:cover;">
                             <div class="card-body">
                                 <h5 class="card-title text-uppercase fw-bold">{{ $artist->artist_name }}</h5>
-                                <p class="card-text text-muted small mb-0">{{ $artist->product_count }} SẢN PHẨM</p>
+                                <p class="card-text text-muted small mb-0">{{ $artist->product_count }} PRODUCT</p>
                             </div>
                         </div>
                     </a>

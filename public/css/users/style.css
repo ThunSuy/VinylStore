@@ -1781,22 +1781,42 @@ img.post-image {
 
 #header-wrap {
   position: relative;
-  z-index: 2000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2999;
+  background: #f3f2ec;
   transition: transform 0.4s cubic-bezier(0.4,0,0.2,1), box-shadow 0.3s;
-  transform: translateY(0); 
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  transform: none;
 }
 
-#header-wrap.fixed-top {
+#header-wrap.header-fixed {
+  position: fixed;
+  transform: translateY(-100%);
+  animation: headerSlideDown 0.4s cubic-bezier(0.4,0,0.2,1) forwards;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.12);
+}
+@keyframes headerSlideDown {
+  from { transform: translateY(-40%); }
+  to   { transform: translateY(0); }
+}
+/* #header-wrap {
+  position: relative;
+  z-index: 2000;
+  transition: transform 0.4s cubic-bezier(0.4,0,0.2,1), box-shadow 0.3s;
+  transform: translateY(0);
+} */
+
+/* #header-wrap.fixed-top {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 999; 
   box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-  background: #f3f2ec; /* hoặc có thể là background: transparent; */
-  /* transform: translateY(0); */
-  
-}
+  background: #f3f2ec; 
+} */
 
 /* #header-wrap.fixed-top.fixed-animate {
   transform: translateY(-100%);
@@ -1853,7 +1873,7 @@ img.post-image {
 /* - Main Navigation
 ------------------------------------------------------------- */
 #header {
-  padding-bottom: 5px;
+  padding: 10px 0 15px 0;
   border-bottom: 1px solid #E0E0E0;
   background-color: #f3f2ec;
 }
@@ -2489,6 +2509,24 @@ footer#footer {
     transition: all 0.2s;
 }
 
+.menu-list > li.active > a,
+.menu-list > li > ul > li.active > a {
+    color: #f0af45 !important;/* hoặc màu bạn muốn */
+    font-weight: bold;
+}
+
+/* Ngăn chặn style active lan sang các li con */
+.menu-list > li.has-sub.active > ul > li > a {
+    color: inherit !important;
+    font-weight: normal;
+}
+
+.menu-list > li.has-sub > ul > li:hover > a {
+    background: #e4ba77;      /* màu nền khi hover */
+    color: #fff !important;   /* màu chữ khi hover */
+    font-weight: bold;
+    transition: background 0.2s, color 0.2s;
+}
 
 @media screen and (max-width: 768px) {
   .products-grid .product-item {

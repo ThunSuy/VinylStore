@@ -38,7 +38,6 @@
         </div>
 
         {{-- Danh sách sản phẩm --}}
-        {{-- filepath: resources/views/artists/show.blade.php --}}
         <div class="row">
             @foreach ($albums as $album)
                 <div class="col-md-3">

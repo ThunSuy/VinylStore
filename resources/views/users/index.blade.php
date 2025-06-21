@@ -99,7 +99,7 @@
                                         class="menu-item has-sub {{ request()->is('genres') || request()->is('genres/*') ? 'active' : '' }}">
                                         <a href="{{ route('genres.index') }}" class="nav-link">Genres</a>
                                         <ul>
-                                            <li class="{{ request()->is('genres') ? 'active' : '' }}"><a
+                                            {{-- <li class="{{ request()->is('genres') ? 'active' : '' }}"><a
                                                     href="{{ route('genres.index') }}">ALL</a></li>
                                             @foreach ($genres as $genre)
                                                 <li
@@ -109,25 +109,21 @@
                                                         {{ $genre->genre_name }}
                                                     </a>
                                                 </li>
-                                            @endforeach
-                                        </ul>
-                                    </li>
-                                    {{-- <li class="menu-item has-sub">
-                                        <a href="{{ route('genres.index') }}" class="nav-link">Genres</a>
-
-                                        <ul>
-                                            <li class="active"><a href="">ALL</a></li>
+                                            @endforeach --}}
+                                            <li class="{{ request()->is('genres') ? 'active' : '' }}">
+                                                <a href="{{ route('genres.index') }}">ALL</a>
+                                            </li>
                                             @foreach ($genres as $genre)
-                                                <li>
-                                                    <a
-                                                        href="{{ url('/genres/' . ($genre->slug ?? $genre->genre_id)) }}">
+                                                <li
+                                                    class="{{ request()->is('genres/' . $genre->slug) ? 'active' : '' }}">
+                                                    <a href="{{ url('/genres/' . $genre->slug) }}">
                                                         {{ $genre->genre_name }}
                                                     </a>
                                                 </li>
                                             @endforeach
                                         </ul>
+                                    </li>
 
-                                    </li> --}}
                                     <li class="menu-item"><a href="#featured" class="nav-link">Featured</a></li>
                                     <li class="menu-item"><a href="#popular" class="nav-link">Popular</a></li>
                                     <li

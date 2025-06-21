@@ -31,3 +31,4 @@ Route::get('/artists/{artist_name}', [ArtistController::class, 'show'])->name('a
 
 
 Route::get('/genres', [GenreController::class, 'index'])->name('genres.index');
+Route::get('/genres/{slug}', [GenreController::class, 'show'])->name('genres.show');

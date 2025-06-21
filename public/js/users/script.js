@@ -100,15 +100,24 @@
     //   $('#header-wrap').removeClass('fixed-top');
     // }, 1000);
 
-    document.querySelectorAll('.menu-list > li > a').forEach(function (link) {
-      link.addEventListener('click', function () {
-        // Xóa active ở tất cả các menu item
-        document.querySelectorAll('.menu-list > li').forEach(function (li) {
-          li.classList.remove('active');
-        });
-        // Đặt active cho menu item vừa click
-        this.parentElement.classList.add('active');
-      });
+    // document.querySelectorAll('.menu-list > li > a').forEach(function (link) {
+    //   link.addEventListener('click', function () {
+    //     // Xóa active ở tất cả các menu item
+    //     document.querySelectorAll('.menu-list > li').forEach(function (li) {
+    //       li.classList.remove('active');
+    //     });
+    //     // Đặt active cho menu item vừa click
+    //     this.parentElement.classList.add('active');
+    //   });
+    // });
+
+    window.addEventListener('scroll', function () {
+      const header = document.getElementById('header-wrap');
+      if (window.scrollY > 99) {
+        header.classList.add('header-fixed');
+      } else {
+        header.classList.remove('header-fixed');
+      }
     });
 
     $('.product-grid').slick({

@@ -15,15 +15,18 @@
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
             @foreach ($genres as $genre)
                 <div class="col">
-                    <div class="card h-100 text-center shadow-sm genre-card">
-                        <img src="{{ asset('images/genre/' . ($genre->image_path ?? 'default.png')) }}"
-                            alt="{{ $genre->genre_name }}" class="card-img-top" style="aspect-ratio:1/1;object-fit:cover;">
-                        <div class="card-body">
-                            <h5 class="card-title text-uppercase fw-bold">{{ $genre->genre_name }}</h5>
-                            <p class="card-text text-muted small mb-0">{{ (int) ($genre->product_count ?? 0) }} SẢN PHẨM
-                            </p>
+                    <a href="{{ route('genres.show', ['slug' => $genre->slug]) }}">
+                        <div class="card h-100 text-center shadow-sm genre-card">
+                            <img src="{{ asset('images/genre/' . ($genre->image_path ?? 'default.png')) }}"
+                                alt="{{ $genre->genre_name }}" class="card-img-top"
+                                style="aspect-ratio:1/1;object-fit:cover;">
+                            <div class="card-body">
+                                <h5 class="card-title text-uppercase fw-bold">{{ $genre->genre_name }}</h5>
+                                <p class="card-text text-muted small mb-0">{{ (int) ($genre->product_count ?? 0) }} PRODUCT
+                                </p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             @endforeach
         </div>
