@@ -20,7 +20,8 @@
                             alt="{{ $genre->genre_name }}" class="card-img-top" style="aspect-ratio:1/1;object-fit:cover;">
                         <div class="card-body">
                             <h5 class="card-title text-uppercase fw-bold">{{ $genre->genre_name }}</h5>
-                            {{-- <p class="card-text text-muted small mb-0">{{ $genre->product_count }} SẢN PHẨM</p> --}}
+                            <p class="card-text text-muted small mb-0">{{ (int) ($genre->product_count ?? 0) }} SẢN PHẨM
+                            </p>
                         </div>
                     </div>
                 </div>

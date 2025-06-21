@@ -22,8 +22,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         //
-        View::composer('*', function ($view) {
-            $view->with('genres', DB::table('genres')->get());
-        });
+        // View::composer('*', function ($view) {
+        //     $view->with('genres', DB::table('genres')->get());
+        // });
     }
 }

@@ -19,14 +19,16 @@ class ArtistController extends Controller
             ->select('artists.artist_id', 'artists.artist_name', 'artists.image_url', 'artists.description', DB::raw('COUNT(albums.album_id) as product_count'))
             ->groupBy('artists.artist_id', 'artists.artist_name', 'artists.image_url', 'artists.description')
             ->get();
+        $genres = DB::table('genres')->get();
 
-        return view('users.artists.index', compact('artists'));
+        return view('users.artists.index', compact('artists', 'genres'));
     }
 
 
 
     public function show($artist_name, Request $request)
     {
+        $genres = DB::table('genres')->get();
         $artist = DB::table('artists')
             ->whereRaw('LOWER(artist_name) = ?', [strtolower($artist_name)])
             ->first();
@@ -58,6 +60,6 @@ class ArtistController extends Controller
             });
         }
 
-        return view('users.artists.show', compact('artist', 'description', 'albums', 'sort'));
+        return view('users.artists.show', compact('artist', 'description', 'albums', 'sort', 'genres'));
     }
 }

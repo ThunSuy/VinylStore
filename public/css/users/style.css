@@ -1792,9 +1792,10 @@ img.post-image {
   left: 0;
   width: 100%;
   z-index: 999; 
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
   background: #f3f2ec; /* hoặc có thể là background: transparent; */
   /* transform: translateY(0); */
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  
 }
 
 /* #header-wrap.fixed-top.fixed-animate {
@@ -2473,10 +2474,6 @@ footer#footer {
   font-weight: bold;
 }
 
-.card,
-.card-img-top {
-    border-radius: 0 !important;
-}
 
 .genre-card{
   background: #efeee9;
