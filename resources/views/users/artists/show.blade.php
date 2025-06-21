@@ -41,33 +41,37 @@
         <div class="row">
             @foreach ($albums as $album)
                 <div class="col-md-3">
-                    <div class="product-item">
-                        <figure class="product-style">
-                            <img src="{{ asset('images/albums/' . ($album->cover_image_url ?? 'default.png')) }}"
-                                alt="{{ $album->album_name }}" class="product-item">
-                            <button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to Cart</button>
-                            @if ($album->discount_value)
-                                <span class="badge bg-warning text-dark position-absolute top-0 start-0 m-2"
-                                    style="z-index:2;">Giảm giá!</span>
-                            @endif
-                        </figure>
-                        <figcaption>
-                            <h3>{{ $artist->artist_name }} – {{ $album->album_name }} – Đĩa Than</h3>
-                            <span>{{ $artist->artist_name }}</span>
-                            <div class="item-price">
+                    <a href="{{ route('albums.show', ['album_id' => $album->album_id]) }}"
+                        class="text-decoration-none text-dark">
+                        <div class="product-item">
+                            <figure class="product-style">
+                                <img src="{{ asset('images/albums/' . ($album->cover_image_url ?? 'default.png')) }}"
+                                    alt="{{ $album->album_name }}" class="product-item">
+                                <button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to
+                                    Cart</button>
                                 @if ($album->discount_value)
-                                    <span class="prev-price">${{ number_format($album->price, 2) }}</span>
-                                    @if ($album->discount_type == 'percentage')
-                                        ${{ number_format($album->price * (1 - $album->discount_value / 100), 2) }}
-                                    @else
-                                        ${{ number_format($album->price - $album->discount_value, 2) }}
-                                    @endif
-                                @else
-                                    ${{ number_format($album->price, 2) }}
+                                    <span class="badge bg-warning text-dark position-absolute top-0 start-0 m-2"
+                                        style="z-index:2;">Giảm giá!</span>
                                 @endif
-                            </div>
-                        </figcaption>
-                    </div>
+                            </figure>
+                            <figcaption>
+                                <h3>{{ $artist->artist_name }} – {{ $album->album_name }} – Đĩa Than</h3>
+                                <span>{{ $artist->artist_name }}</span>
+                                <div class="item-price">
+                                    @if ($album->discount_value)
+                                        <span class="prev-price">${{ number_format($album->price, 2) }}</span>
+                                        @if ($album->discount_type == 'percentage')
+                                            ${{ number_format($album->price * (1 - $album->discount_value / 100), 2) }}
+                                        @else
+                                            ${{ number_format($album->price - $album->discount_value, 2) }}
+                                        @endif
+                                    @else
+                                        ${{ number_format($album->price, 2) }}
+                                    @endif
+                                </div>
+                            </figcaption>
+                        </div>
+                    </a>
                 </div>
             @endforeach
         </div>

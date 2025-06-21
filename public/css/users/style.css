@@ -2522,11 +2522,13 @@ footer#footer {
 }
 
 .menu-list > li.has-sub > ul > li:hover > a {
-    background: #e4ba77;      /* màu nền khi hover */
+    background: #ffd28a;      /* màu nền khi hover */
     color: #fff !important;   /* màu chữ khi hover */
     font-weight: bold;
     transition: background 0.2s, color 0.2s;
 }
+
+
 
 @media screen and (max-width: 768px) {
   .products-grid .product-item {
