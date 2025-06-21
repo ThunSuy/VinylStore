@@ -94,21 +94,40 @@
                                     <li class="{{ request()->is('/') ? 'active' : '' }}">
                                         <a href="{{ url('/') }}">Home</a>
                                     </li>
-                                    <li class="menu-item has-sub">
-                                        <a href="#pages" class="nav-link">Genres</a>
+
+                                    <li
+                                        class="menu-item has-sub {{ request()->is('genres') || request()->is('genres/*') ? 'active' : '' }}">
+                                        <a href="{{ route('genres.index') }}" class="nav-link">Genres</a>
+                                        <ul>
+                                            <li class="{{ request()->is('genres') ? 'active' : '' }}"><a
+                                                    href="{{ route('genres.index') }}">ALL</a></li>
+                                            @foreach ($genres as $genre)
+                                                <li
+                                                    class="{{ request()->is('genres/' . ($genre->slug ?? $genre->genre_id)) ? 'active' : '' }}">
+                                                    <a
+                                                        href="{{ url('/genres/' . ($genre->slug ?? $genre->genre_id)) }}">
+                                                        {{ $genre->genre_name }}
+                                                    </a>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </li>
+                                    {{-- <li class="menu-item has-sub">
+                                        <a href="{{ route('genres.index') }}" class="nav-link">Genres</a>
 
                                         <ul>
                                             <li class="active"><a href="">ALL</a></li>
                                             @foreach ($genres as $genre)
                                                 <li>
-                                                    <a href="#genre-{{ $genre->slug ?? $genre->genre_id }}">
+                                                    <a
+                                                        href="{{ url('/genres/' . ($genre->slug ?? $genre->genre_id)) }}">
                                                         {{ $genre->genre_name }}
                                                     </a>
                                                 </li>
                                             @endforeach
                                         </ul>
 
-                                    </li>
+                                    </li> --}}
                                     <li class="menu-item"><a href="#featured" class="nav-link">Featured</a></li>
                                     <li class="menu-item"><a href="#popular" class="nav-link">Popular</a></li>
                                     <li

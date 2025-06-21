@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ArtistController;
+use App\Http\Controllers\GenreController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 
@@ -23,5 +24,10 @@ use App\Http\Controllers\UserController;
 
 Route::get('/', [UserController::class, 'index']);
 Route::get('/index', [UserController::class, 'index']);
+
+
 Route::get('/artists', [ArtistController::class, 'index'])->name('artists.index');
 Route::get('/artists/{artist_name}', [ArtistController::class, 'show'])->name('artists.show');
+
+
+Route::get('/genres', [GenreController::class, 'index'])->name('genres.index');

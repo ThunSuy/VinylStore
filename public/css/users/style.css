@@ -2473,6 +2473,25 @@ footer#footer {
   font-weight: bold;
 }
 
+.card,
+.card-img-top {
+    border-radius: 0 !important;
+}
+
+.genre-card{
+  background: #efeee9;
+}
+
+.artist-card{
+  background: #efeee9;
+}
+
+.genre-card:hover {
+    box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+    transform: translateY(-4px) scale(1.03);
+    transition: all 0.2s;
+}
+
 
 @media screen and (max-width: 768px) {
   .products-grid .product-item {
