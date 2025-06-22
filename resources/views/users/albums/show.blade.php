@@ -25,17 +25,17 @@
             </div>
             <div class="col-md-7">
                 {{-- --Artist Name-- --}}
-                <div class="mb-3">
+                <div class="mb-1" style="font-size:1rem;">
                     <span class="fw-bold">Artist:</span>
                     <a href="{{ route('artists.show', ['artist_name' => $album->artist_name]) }}"
                         class="fw-bold text-decoration-underline">{{ $album->artist_name }}</a>
                 </div>
 
                 {{-- Album Name --}}
-                <h2 class="fw-bold text-uppercase">{{ $album->album_name }} – Đĩa Than</h2>
+                <h2 class="fw-bold text-uppercase " style="font-size:1.7rem;">{{ $album->album_name }} – Đĩa Than</h2>
 
                 {{-- Price --}}
-                <div class="mb-3 item-price">
+                <div class="mb-3 item-price" style="font-size:1.5rem;">
                     @if ($album->discount_value)
                         <span class="text-muted text-decoration-line-through">${{ number_format($album->price, 2) }}</span>
                         <span class="fw-bold text-danger ms-2">
@@ -64,7 +64,7 @@
                 <button class="btn btn-dark w-50 text-uppercase fw-bold">
                     Add to Cart
                 </button>
-                <div class="mb-2">
+                <div class="mb-5">
                     <div class="fw-bold">Description:</div>
                     <div>{{ $album->description }}</div>
                 </div>
@@ -77,12 +77,12 @@
                 src="https://open.spotify.com/embed/album/{{ $album->spotify_album_id ?? '...' }}" width="100%"
                 height="152" frameBorder="0" allowfullscreen=""
                 allow="autoplay; clipboard-write; encrypted-media; picture-in-picture"></iframe> --}}
-            <iframe src="https://open.spotify.com/embed/album/{{ $album->spotify_album_id }}" width="100%" height="380"
+            <iframe src="https://open.spotify.com/embed/album/{{ $album->spotify_album_id }}" width="100%" height="500"
                 frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
         </div>
 
         {{-- Related Products --}}
-        <h3 class="fw-bold text-uppercase mb-3">Related Products</h3>
+        <h3 class="fw-bold text-uppercase mt-5 mb-4 pt-5">Related Products</h3>
         <div class="row product-slider">
             @foreach ($related as $item)
                 <div class="col-md-3">

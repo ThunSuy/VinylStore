@@ -2,8 +2,9 @@
 
 @section('content')
     <div class="container py-4">
-        {{-- Breadcrumb --}}
         <div class="d-flex justify-content-between align-items-center">
+
+            {{-- Breadcrumb --}}
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
@@ -11,6 +12,8 @@
                     <li class="breadcrumb-item active" aria-current="page">{{ $genre->genre_name }}</li>
                 </ol>
             </nav>
+
+            {{-- Sort Dropdown --}}
             <form method="get">
                 <select name="sort" class="form-select" style="width:auto;display:inline-block;"
                     onchange="this.form.submit()">
@@ -24,22 +27,13 @@
             </form>
         </div>
 
-        {{-- Mô tả thể loại --}}
-        {{-- <div class="mb-2">
-            <h2 class="fw-bold text-uppercase text-center">{{ $genre->genre_name }}</h2>
-            @if (!empty($genre->description))
-                <div class="text-center text-muted">{{ $genre->description }}</div>
-            @endif
-        </div> --}}
 
-        {{-- Danh sách sản phẩm --}}
+        {{-- Albums List --}}
         <div class="row">
             @foreach ($albums as $album)
                 <div class="col-md-3">
                     <a href="{{ route('albums.show', ['album_id' => $album->album_id]) }}"
                         class="text-decoration-none text-dark">
-
-
                         <div class="product-item">
                             <figure class="product-style">
                                 <img src="{{ asset('images/albums/' . ($album->cover_image_url ?? 'default.png')) }}"
@@ -77,10 +71,10 @@
 
             {{-- <-- Pagination --> --}}
             <div class="d-flex flex-column align-items-center">
-                {{-- Pagination chỉ chứa nút --}}
+                {{-- Pagination Links --}}
                 {{ $albums->withQueryString()->links('users.pagination.only-links') }}
 
-                {{-- Dòng text "Showing..." --}}
+                {{-- Pagination Info --}}
                 <div class="text-muted small mb-2">
                     Showing {{ $albums->firstItem() }} to {{ $albums->lastItem() }} of {{ $albums->total() }} results
                 </div>

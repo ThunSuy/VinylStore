@@ -10,8 +10,8 @@
             </ol>
         </nav>
 
-        {{-- <h2 class="mb-4 text-center text-uppercase fw-bold">Genres</h2> --}}
 
+        {{-- Genres List --}}
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
             @foreach ($genres as $genre)
                 <div class="col">

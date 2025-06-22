@@ -2,9 +2,10 @@
 
 @section('content')
     <div class="container py-4">
-        {{-- Tiêu đề và Filter --}}
 
         <div class="d-flex justify-content-between align-items-center">
+
+            {{-- Breadcrumb --}}
             <nav aria-label="breadcrumb" class="">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
@@ -18,6 +19,8 @@
                     </li>
                 </ol>
             </nav>
+
+            {{-- Sort Dropdown --}}
             <form method="get">
                 <select name="sort" class="form-select" style="width:auto;display:inline-block;"
                     onchange="this.form.submit()">
@@ -31,13 +34,13 @@
             </form>
         </div>
 
-        {{-- Mô tả nghệ sĩ --}}
+        {{-- Aritst Description --}}
         <div class="mb-2">
             <h2 class="fw-bold text-uppercase text-center">{{ $artist->artist_name }}</h2>
             <div class="text-center text-muted">{{ $description }}</div>
         </div>
 
-        {{-- Danh sách sản phẩm --}}
+        {{-- Albums List --}}
         <div class="row">
             @foreach ($albums as $album)
                 <div class="col-md-3">
@@ -75,42 +78,6 @@
                 </div>
             @endforeach
         </div>
-        {{-- <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
-            @foreach ($albums as $album)
-                <div class="col">
-                    <div class="card h-100 product-card position-relative">
-                        <div class="position-relative">
-                            <img src="{{ asset('images/album/' . ($album->cover_image_url ?? 'default.png')) }}"
-                                class="card-img-top" alt="{{ $album->album_name }}"
-                                style="aspect-ratio:1/1;object-fit:cover;">
-                            @if ($album->discount_value)
-                                <span class="badge bg-warning text-dark position-absolute top-0 start-0 m-2"
-                                    style="z-index:2;">Giảm giá!</span>
-                            @endif
-                        </div>
-                        <div class="card-body text-center">
-                            <h5 class="card-title fw-bold" style="font-size:1rem;">
-                                {{ $artist->artist_name }} – {{ $album->album_name }} – Đĩa Than
-                            </h5>
-                            <div class="mb-2">
-                                @if ($album->discount_value)
-                                    <span
-                                        class="text-muted text-decoration-line-through">${{ number_format($album->price, 2) }}</span>
-                                    <span class="fw-bold text-danger ms-2">
-                                        @if ($album->discount_type == 'percentage')
-                                            ${{ number_format($album->price * (1 - $album->discount_value / 100), 2) }}
-                                        @else
-                                            ${{ number_format($album->price - $album->discount_value, 2) }}
-                                        @endif
-                                    </span>
-                                @else
-                                    <span class="fw-bold">${{ number_format($album->price, 2) }}</span>
-                                @endif
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            @endforeach
-        </div> --}}
+
     </div>
 @endsection

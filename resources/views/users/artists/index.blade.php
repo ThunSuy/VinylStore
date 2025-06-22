@@ -11,8 +11,8 @@
             </ol>
         </nav>
 
-        {{-- <h2 class="mb-4 text-center text-uppercase fw-bold">Artists</h2> --}}
 
+        {{-- Artists List --}}
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
             @foreach ($artists as $artist)
                 <div class="col">
