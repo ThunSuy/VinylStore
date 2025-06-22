@@ -15,6 +15,8 @@
 
         {{-- Product Info --}}
         <div class="row mb-4">
+
+            {{-- Img Album --}}
             <div class="col-md-5 text-center">
                 <img src="{{ asset('images/albums/' . ($album->cover_image_url ?? 'default.png')) }}"
                     alt="{{ $album->album_name }}" class="img-fluid rounded"
@@ -22,12 +24,17 @@
 
             </div>
             <div class="col-md-7">
+                {{-- --Artist Name-- --}}
                 <div class="mb-3">
                     <span class="fw-bold">Artist:</span>
                     <a href="{{ route('artists.show', ['artist_name' => $album->artist_name]) }}"
                         class="fw-bold text-decoration-underline">{{ $album->artist_name }}</a>
                 </div>
+
+                {{-- Album Name --}}
                 <h2 class="fw-bold text-uppercase">{{ $album->album_name }} – Đĩa Than</h2>
+
+                {{-- Price --}}
                 <div class="mb-3 item-price">
                     @if ($album->discount_value)
                         <span class="text-muted text-decoration-line-through">${{ number_format($album->price, 2) }}</span>
@@ -43,20 +50,17 @@
                         <span class="fw-bold">${{ number_format($album->price, 2) }}</span>
                     @endif
                 </div>
+
+
                 {{-- Quantity selector --}}
-
-                <form class="d-flex align-items-stretch mb-3" style="max-width:160px;">
-                    <button type="button" class="btn btn-outline-secondary w-100" style="width:50px; height:50px"
-                        onclick="changeQty(-1)">-</button>
-
+                <form class="d-flex align-items-center mb-3 quantity-form" style="max-width:170px;">
+                    <button type="button" class="qty-btn" onclick="changeQty(-1)">-</button>
                     <input type="number" id="qty" name="qty" value="1" min="1"
-                        class="form-control mx-2 text-center form-outline-secondary"
-                        style="width:50px; margin:15px 4px; height:50px;">
-
-                    <button type="button" class="btn btn-outline-secondary w-100" style="width:50px; height:50px"
-                        onclick="changeQty(1)">+</button>
+                        class="qty-input text-center">
+                    <button type="button" class="qty-btn" onclick="changeQty(1)">+</button>
                 </form>
 
+                {{-- Add to Cart Button --}}
                 <button class="btn btn-dark w-50 text-uppercase fw-bold">
                     Add to Cart
                 </button>
@@ -78,7 +82,7 @@
         </div>
 
         {{-- Related Products --}}
-        <h3 class="fw-bold text-uppercase mb-3">SẢN PHẨM TƯƠNG TỰ</h3>
+        <h3 class="fw-bold text-uppercase mb-3">Related Products</h3>
         <div class="row product-slider">
             @foreach ($related as $item)
                 <div class="col-md-3">

@@ -2528,6 +2528,55 @@ footer#footer {
     transition: background 0.2s, color 0.2s;
 }
 
+/* Quantity selector custom style */
+.quantity-form {
+    gap: 0;
+}
+
+.qty-btn {
+    width: 50px;
+    height: 50px;
+    background: #212429;
+    color: #fff;
+    border: none;
+    /* font-size: 1.5rem; */
+    font-weight: bold;
+    transition: all 0.2s;
+    border-radius: 3px;
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.qty-btn:hover, .qty-btn:focus {
+    background: #868686;
+    color: #212429;
+    /* border: 2px solid #111; */
+}
+
+.qty-input {
+    width: 53px;
+    height: 50px;
+    margin: 0px 4px;
+    /* border: 1px solid #171717 !important; */
+    font-size: 1.2rem;
+    text-align: center;
+    border-radius: 0 !important;
+    -webkit-border-radius: 0 !important;
+    -moz-border-radius: 0 !important;
+    -ms-border-radius: 0 !important;
+    -o-border-radius: 0 !important;
+    box-shadow: none;
+}
+
+#footer {
+  padding-top: 70px;
+  border-top: 1px solid #E0E0E0;
+  background-color: #f3f2ec;
+  background: #eeebe4;
+}
+
 
 
 @media screen and (max-width: 768px) {
