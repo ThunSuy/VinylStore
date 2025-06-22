@@ -35,6 +35,8 @@
                     <a href="{{ route('albums.show', ['album_id' => $album->album_id]) }}"
                         class="text-decoration-none text-dark">
                         <div class="product-item">
+
+                            {{-- Image --}}
                             <figure class="product-style">
                                 <img src="{{ asset('images/albums/' . ($album->cover_image_url ?? 'default.png')) }}"
                                     alt="{{ $album->album_name }}" class="product-item">
@@ -45,10 +47,11 @@
                                         style="z-index:2;">Giảm giá!</span>
                                 @endif
                             </figure>
+
+                            {{-- AlbumName - AritstName - Price --}}
                             <figcaption>
-                                {{-- <h3>{{ $album->album_name }} – Đĩa Than</h3> --}}
-                                <h3>{{ $album->artist_name }} – {{ $album->album_name }} – Đĩa Than</h3>
-                                <span>{{ $genre->genre_name }}</span>
+                                <h3>{{ $album->album_name }}</h3>
+                                <span>{{ $album->artist_name }}</span>
                                 <div class="item-price">
                                     @if ($album->discount_value)
                                         <span class="prev-price">${{ number_format($album->price, 2) }}</span>

@@ -2,21 +2,12 @@
 
 @section('content')
     <div class="container py-4">
-
         <div class="d-flex justify-content-between align-items-center">
-
             {{-- Breadcrumb --}}
-            <nav aria-label="breadcrumb" class="">
+            <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item">
-                        <a href="{{ url('/') }}">Home</a>
-                    </li>
-                    <li class="breadcrumb-item">
-                        <a href="{{ route('artists.index') }}">Artists</a>
-                    </li>
-                    <li class="breadcrumb-item active" aria-current="page">
-                        {{ $artist->artist_name }}
-                    </li>
+                    <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Shop</li>
                 </ol>
             </nav>
 
@@ -26,18 +17,10 @@
                     onchange="this.form.submit()">
                     <option value="">Sắp xếp</option>
                     <option value="newest" {{ $sort == 'newest' ? 'selected' : '' }}>Mới nhất</option>
-                    <option value="popular" {{ $sort == 'popular' ? 'selected' : '' }}>Theo độ phổ biến</option>
-                    <option value="rating" {{ $sort == 'rating' ? 'selected' : '' }}>Theo đánh giá</option>
                     <option value="price_asc" {{ $sort == 'price_asc' ? 'selected' : '' }}>Giá tăng dần</option>
                     <option value="price_desc" {{ $sort == 'price_desc' ? 'selected' : '' }}>Giá giảm dần</option>
                 </select>
             </form>
-        </div>
-
-        {{-- Aritst Description --}}
-        <div class="mb-2">
-            <h2 class="fw-bold text-uppercase text-center">{{ $artist->artist_name }}</h2>
-            <div class="text-center text-muted">{{ $description }}</div>
         </div>
 
         {{-- Albums List --}}
@@ -47,6 +30,7 @@
                     <a href="{{ route('albums.show', ['album_id' => $album->album_id]) }}"
                         class="text-decoration-none text-dark">
                         <div class="product-item">
+
 
                             {{-- Image --}}
                             <figure class="product-style">
@@ -62,8 +46,8 @@
 
                             {{-- AlbumName - AritstName - Price --}}
                             <figcaption>
-                                <h3 style="font-size:1.4rem;">{{ $album->album_name }}</h3>
-                                <span>{{ $artist->artist_name }}</span>
+                                <h3>{{ $album->album_name }}</h3>
+                                <span>{{ $album->artist_name }}</span>
                                 <div class="item-price">
                                     @if ($album->discount_value)
                                         <span class="prev-price">${{ number_format($album->price, 2) }}</span>
@@ -83,5 +67,12 @@
             @endforeach
         </div>
 
+        {{-- Pagination --}}
+        <div class="d-flex flex-column align-items-center">
+            {{ $albums->withQueryString()->links('users.pagination.only-links') }}
+            <div class="text-muted small mb-2">
+                Showing {{ $albums->firstItem() }} to {{ $albums->lastItem() }} of {{ $albums->total() }} results
+            </div>
+        </div>
     </div>
 @endsection

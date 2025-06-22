@@ -90,26 +90,24 @@
                         <nav id="navbar">
                             <div class="main-menu stellarnav">
                                 <ul class="menu-list">
-                                    {{-- <li class="menu-item active"><a href="/index">Home</a></li> --}}
+
+                                    {{-- item Home --}}
                                     <li class="{{ request()->is('/') ? 'active' : '' }}">
                                         <a href="{{ url('/') }}">Home</a>
                                     </li>
 
+
+                                    {{-- item Shop --}}
+                                    <li class="menu-item {{ request()->is('shop') ? 'active' : '' }}">
+                                        <a href="{{ route('shop.index') }}" class="nav-link">Shop</a>
+                                    </li>
+
+
+                                    {{-- item Genres --}}
                                     <li
                                         class="menu-item has-sub {{ request()->is('genres') || request()->is('genres/*') ? 'active' : '' }}">
                                         <a href="{{ route('genres.index') }}" class="nav-link">Genres</a>
                                         <ul>
-                                            {{-- <li class="{{ request()->is('genres') ? 'active' : '' }}"><a
-                                                    href="{{ route('genres.index') }}">ALL</a></li>
-                                            @foreach ($genres as $genre)
-                                                <li
-                                                    class="{{ request()->is('genres/' . ($genre->slug ?? $genre->genre_id)) ? 'active' : '' }}">
-                                                    <a
-                                                        href="{{ url('/genres/' . ($genre->slug ?? $genre->genre_id)) }}">
-                                                        {{ $genre->genre_name }}
-                                                    </a>
-                                                </li>
-                                            @endforeach --}}
                                             <li class="{{ request()->is('genres') ? 'active' : '' }}">
                                                 <a href="{{ route('genres.index') }}">ALL</a>
                                             </li>
@@ -126,11 +124,14 @@
 
                                     <li class="menu-item"><a href="#featured" class="nav-link">Featured</a></li>
                                     <li class="menu-item"><a href="#popular" class="nav-link">Popular</a></li>
+
+
+                                    {{-- item Artists --}}
                                     <li
                                         class="{{ request()->is('artists') || request()->is('artists/*') ? 'active' : '' }}">
                                         <a href="{{ route('artists.index') }}">Artists</a>
                                     </li>
-                                    <li class="menu-item"><a href="#latest-blog" class="nav-link">Articles</a></li>
+
                                     {{-- <li class="menu-item"><a href="#download-app" class="nav-link">Download App</a> --}}
                                     </li>
                                 </ul>

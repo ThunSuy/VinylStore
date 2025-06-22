@@ -1910,7 +1910,7 @@ img.post-image {
 .main-slider .banner-content {
   width: 35%;
   margin-top: 60px;
-  margin-right: 175px;
+  margin-right: 120px;
 }
 
 .banner-content h2.banner-title {
@@ -2431,7 +2431,7 @@ footer#footer {
   position: relative;
   background: #EFEEE8;
   border: 1px solid #EAE8DF;
-  padding: 15%;
+  padding: 5%;
   cursor: pointer;
   width: 100%;
 }

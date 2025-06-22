@@ -11,41 +11,25 @@
                         <i class="icon icon-arrow-left"></i>
                     </button>
 
+                    {{-- Slider --}}
                     <div class="main-slider pattern-overlay">
-                        <div class="slider-item">
-                            <div class="banner-content">
-                                <h2 class="banner-title">Fearless Gold</h2>
-                                <h3 class="item-price">Taylor Swift</h3>
-                                <p>"Fearless Gold" was an album full of magic and curiosity, the bliss and devastation
-                                    of
-                                    youth. It was the diary of the adventures and explorations of a teenage girl who
-                                    was learning tiny lessons with every new crack in the facade of the fairytale ending
-                                    she'd been shown in the movies.
-                                </p>
-                                <div class="btn-wrap">
-                                    <a href="#" class="btn btn-outline-accent btn-accent-arrow">Read More<i
-                                            class="icon icon-ns-arrow-right"></i></a>
-                                </div>
-                            </div><!--banner-content-->
-                            <img src="images/Fearless-TaylorSwift.jpg" alt="banner" class="banner-image">
-                        </div><!--slider-item-->
-
-                        <div class="slider-item">
-                            <div class="banner-content">
-                                <h2 class="banner-title">Beleive</h2>
-                                <h3 class="item-price">Andrea Bocelli</h3>
-                                <p>Internationally renowned Italian tenor Andrea Bocelli releases breathtaking new
-                                    album, Believe, celebrating the power of music to soothe the soul. It follows his
-                                    record-breaking `Music for Hope' performance at Easter from Milan's historic Duomo
-                                    cathedral. </p>
-                                <div class="btn-wrap">
-                                    <a href="#" class="btn btn-outline-accent btn-accent-arrow">Read More<i
-                                            class="icon icon-ns-arrow-right"></i></a>
-                                </div>
-                            </div><!--banner-content-->
-                            <img src="images/Believe-AndreaBocelli.jpg" alt="banner" class="banner-image">
-                        </div><!--slider-item-->
-
+                        @foreach ($albums as $album)
+                            <div class="slider-item">
+                                <div class="banner-content">
+                                    <h2 class="banner-title" style="font-size:2.8rem;">{{ $album->album_name }}</h2>
+                                    <h3 class="item-price">{{ $album->artist_name }}</h3>
+                                    <p>{{ $album->description }}</p>
+                                    <div class="btn-wrap">
+                                        <a href="{{ route('albums.show', ['album_id' => $album->album_id]) }}"
+                                            class="btn btn-outline-accent btn-accent-arrow">
+                                            View More<i class="icon icon-ns-arrow-right"></i>
+                                        </a>
+                                    </div>
+                                </div><!--banner-content-->
+                                <img src="{{ asset('images/albums/' . ($album->cover_image_url ?? 'default.png')) }}"
+                                    alt="banner" class="banner-image" style="width: 500px;height: auto;">
+                            </div><!--slider-item-->
+                        @endforeach
                     </div><!--slider-->
 
                     <button class="next slick-arrow">
