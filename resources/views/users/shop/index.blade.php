@@ -50,14 +50,14 @@
                                 <span>{{ $album->artist_name }}</span>
                                 <div class="item-price">
                                     @if ($album->discount_value)
-                                        <span class="prev-price">${{ number_format($album->price, 2) }}</span>
+                                        <span class="prev-price">{{ number_format($album->price, 0) }}đ</span>
                                         @if ($album->discount_type == 'percentage')
-                                            ${{ number_format($album->price * (1 - $album->discount_value / 100), 2) }}
+                                            {{ number_format($album->price * (1 - $album->discount_value / 100), 0) }}đ
                                         @else
-                                            ${{ number_format($album->price - $album->discount_value, 2) }}
+                                            {{ number_format($album->price - $album->discount_value, 0) }}đ
                                         @endif
                                     @else
-                                        ${{ number_format($album->price, 2) }}
+                                        {{ number_format($album->price, 0) }}đ
                                     @endif
                                 </div>
                             </figcaption>

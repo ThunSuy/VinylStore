@@ -27,6 +27,11 @@
             </form>
         </div>
 
+        {{-- Genre Description --}}
+        <div class="mb-2">
+            <h2 class="fw-bold text-uppercase text-center">{{ $genre->genre_name }}</h2>
+            <div class="text-center text-muted">{{ $genre->description }}</div>
+        </div>
 
         {{-- Albums List --}}
         <div class="row">

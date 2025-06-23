@@ -113,7 +113,7 @@
 
     window.addEventListener('scroll', function () {
       const header = document.getElementById('header-wrap');
-      if (window.scrollY > 99) {
+      if (window.scrollY > 250) {
         header.classList.add('header-fixed');
       } else {
         header.classList.remove('header-fixed');

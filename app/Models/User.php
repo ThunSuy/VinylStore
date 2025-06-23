@@ -17,12 +17,15 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    protected $primaryKey = 'user_id';
+    public $timestamps = false; // Nếu bảng không có created_at, updated_at
     protected $fillable = [
-        'name',
+        'google_id',
         'email',
-        'password',
+        'full_name',
+        'avatar_url',
+        'password'
     ];
-
     /**
      * The attributes that should be hidden for serialization.
      *

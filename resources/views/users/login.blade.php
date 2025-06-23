@@ -8,7 +8,7 @@
             <h2 class="login-title">ĐĂNG NHẬP TÀI KHOẢN</h2>
 
             <div class="login-social">
-                <button class="login-btn login-google">
+                <button class="login-btn login-google" onclick="window.location='{{ route('login.google') }}'">
                     <svg width="20" height="20" viewBox="0 0 48 48" style="vertical-align:middle;margin-right:8px;">
                         <g>
                             <path fill="#EA4335"

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,3 +49,10 @@ Route::get('/shop', [ShopController::class, 'index'])->name('shop.index');
 // Login page
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 // Route::post('/login', [LoginController::class, 'login']);
+Route::get('auth/google', [LoginController::class, 'redirectToGoogle'])->name('login.google');
+Route::get('auth/google/callback', [LoginController::class, 'handleGoogleCallback']);
+
+
+// User account page
+Route::get('/account/profile', [UserController::class, 'profile'])->name('account.profile');
+Route::post('/account/profile', [UserController::class, 'updateProfile'])->name('profile.update');

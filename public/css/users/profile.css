@@ -1,0 +1,156 @@
+.profile-wrapper {
+    display: flex;
+    gap: 40px;
+    max-width: 900px;
+    margin: 40px auto;
+    background: #efeee9;
+    border: 4px solid #eeebe4;
+    border-radius: 12px;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.15);
+    padding: 32px 0px 32px 50px;
+    flex-wrap: wrap;
+}
+
+.profile-left,
+.profile-right {
+    flex: 1 1 320px;
+    min-width: 280px;
+}
+
+.profile-header {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+    color: #333333;
+}
+
+.profile-subtitle {
+    color: #343434;
+    font-size: 1rem;
+    margin-bottom: 28px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    font-weight: 600;
+    margin-bottom: 6px;
+    display: block;
+}
+
+.profile-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.profile-row .profile-link {
+    color: #007bff;
+    font-size: 0.95rem;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-left: 8px;
+}
+
+.profile-radio-group {
+    display: flex;
+    gap: 24px;
+    margin-top: 6px;
+}
+
+.profile-radio-label {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-weight: 400;
+}
+
+.profile-dob-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 6px;
+}
+
+.profile-dob-group select {
+    padding: 6px 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.save-btn {
+    width: 100%;
+    background: #7e6b40;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 12px 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-top: 24px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.save-btn:hover {
+    background: #ae9b6c;
+}
+
+.profile-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 12px;
+}
+
+.avatar-placeholder {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    background: #f2f2f2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 18px;
+    font-size: 48px;
+    color: #bbb;
+    border: 2px solid #eee;
+}
+
+.avatar-upload-btn {
+    background: #fff;
+    border: 1px solid #bbb;
+    border-radius: 4px;
+    padding: 7px 18px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-bottom: 10px;
+    transition: border 0.2s;
+}
+
+.avatar-upload-btn:hover {
+    border: 1.5px solid #e53935;
+}
+
+.avatar-note {
+    font-size: 0.92rem;
+    color: #888;
+    text-align: center;
+    margin-top: 0;
+    line-height: 1.5;
+}
+
+@media (max-width: 700px) {
+    .profile-wrapper {
+        flex-direction: column;
+        padding: 18px 6px;
+    }
+
+    .profile-right {
+        margin-top: 24px;
+        padding-top: 0;
+    }
+}

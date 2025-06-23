@@ -37,17 +37,17 @@
                 {{-- Price --}}
                 <div class="mb-3 item-price" style="font-size:1.5rem;">
                     @if ($album->discount_value)
-                        <span class="text-muted text-decoration-line-through">${{ number_format($album->price, 2) }}</span>
+                        <span class="text-muted text-decoration-line-through">{{ number_format($album->price, 0) }}đ</span>
                         <span class="fw-bold text-danger ms-2">
                             @if ($album->discount_type == 'percentage')
-                                ${{ number_format($album->price * (1 - $album->discount_value / 100), 2) }}
+                                {{ number_format($album->price * (1 - $album->discount_value / 100), 0) }}đ
                             @else
-                                ${{ number_format($album->price - $album->discount_value, 2) }}
+                                {{ number_format($album->price - $album->discount_value, 0) }}đ
                             @endif
                         </span>
                         <span class="badge bg-warning text-dark ms-2">Giảm giá!</span>
                     @else
-                        <span class="fw-bold">{{ number_format($album->price, 2) }}đ</span>
+                        <span class="fw-bold">{{ number_format($album->price, 0) }}đ</span>
                     @endif
                 </div>
 
@@ -106,14 +106,14 @@
                             <span>{{ $item->artist_name }}</span>
                             <div class="item-price">
                                 @if ($item->discount_value)
-                                    <span class="prev-price">${{ number_format($item->price, 2) }}</span>
+                                    <span class="prev-price">${{ number_format($item->price, 0) }}đ</span>
                                     @if ($item->discount_type == 'percentage')
-                                        ${{ number_format($item->price * (1 - $item->discount_value / 100), 2) }}
+                                        {{ number_format($item->price * (1 - $item->discount_value / 100), 0) }}đ
                                     @else
-                                        ${{ number_format($item->price - $item->discount_value, 2) }}
+                                        {{ number_format($item->price - $item->discount_value, 0) }}đ
                                     @endif
                                 @else
-                                    ${{ number_format($item->price, 2) }}
+                                    {{ number_format($item->price, 0) }}đ
                                 @endif
                             </div>
                         </figcaption>

@@ -20,6 +20,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/users/vendor.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/users/style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/users/login.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/users/profile.css') }}">
 
 
 </head>
@@ -73,9 +74,14 @@
 
 
                             {{-- Account --}}
-                            <a href="{{ auth()->check() ? route('profile') : route('login') }}"
+                            <a href="{{ auth()->check() ? url('/account/profile') : route('login') }}"
                                 class="user-account for-buy">
-                                <i class="icon icon-user"></i><span>Đăng nhập</span>
+                                <i class="icon icon-user"></i>
+                                @if (auth()->check())
+                                    <span>{{ auth()->user()->full_name ?? auth()->user()->email }}</span>
+                                @else
+                                    <span>Đăng nhập</span>
+                                @endif
                             </a>
 
 
