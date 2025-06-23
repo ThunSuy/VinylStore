@@ -1752,6 +1752,7 @@ img.post-image {
 
 .action-menu .search-bar {
   overflow: hidden;
+  margin-right: 35px;
 }
 
 .action-menu .search-bar,
@@ -1776,7 +1777,7 @@ img.post-image {
 }
 
 #header-wrap.show .search-bar {
-  width: 300px;
+  width: 400px;
 }
 
 #header-wrap {
@@ -1833,7 +1834,7 @@ img.post-image {
 
 
 #header-wrap .search-box .search-input {
-  width: 250px;
+  width: 350px;
   border: 0;
   margin-bottom: 0;
   font-weight: 300;

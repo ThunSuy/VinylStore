@@ -5,8 +5,8 @@
         {{-- Breadcrumb --}}
         <nav aria-label="breadcrumb" class="mb-3">
             <ol class="breadcrumb fw-bold">
-                <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('genres.index') }}">Genres</a></li>
+                <li class="breadcrumb-item"><a href="{{ url('/') }}">Trang chủ</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('genres.index') }}">Thể loại</a></li>
                 <li class="breadcrumb-item"><a href="{{ url('/genres/' . $album->genre_name) }}">{{ $album->genre_name }}</a>
                 </li>
                 <li class="breadcrumb-item active" aria-current="page">{{ $album->album_name }}</li>
@@ -26,7 +26,7 @@
             <div class="col-md-7">
                 {{-- --Artist Name-- --}}
                 <div class="mb-1" style="font-size:1rem;">
-                    <span class="fw-bold">Artist:</span>
+                    <span class="fw-bold">Nghệ sĩ:</span>
                     <a href="{{ route('artists.show', ['artist_name' => $album->artist_name]) }}"
                         class="fw-bold text-decoration-underline">{{ $album->artist_name }}</a>
                 </div>
@@ -47,7 +47,7 @@
                         </span>
                         <span class="badge bg-warning text-dark ms-2">Giảm giá!</span>
                     @else
-                        <span class="fw-bold">${{ number_format($album->price, 2) }}</span>
+                        <span class="fw-bold">{{ number_format($album->price, 2) }}đ</span>
                     @endif
                 </div>
 
@@ -62,10 +62,10 @@
 
                 {{-- Add to Cart Button --}}
                 <button class="btn btn-dark w-50 text-uppercase fw-bold">
-                    Add to Cart
+                    Thêm vào giỏ hàng
                 </button>
                 <div class="mb-5">
-                    <div class="fw-bold">Description:</div>
+                    <div class="fw-bold">Mô tả sản phẩm:</div>
                     <div>{{ $album->description }}</div>
                 </div>
             </div>
@@ -82,7 +82,7 @@
         </div>
 
         {{-- Related Products --}}
-        <h3 class="fw-bold text-uppercase mt-5 mb-4 pt-5">Related Products</h3>
+        <h3 class="fw-bold text-uppercase mt-5 mb-4 pt-5">Sản phẩm tương tự</h3>
         <div class="row product-slider">
             @foreach ($related as $item)
                 <div class="col-md-3">

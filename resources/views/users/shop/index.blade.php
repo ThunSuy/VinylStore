@@ -6,8 +6,8 @@
             {{-- Breadcrumb --}}
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Shop</li>
+                    <li class="breadcrumb-item"><a href="{{ url('/') }}">Trang chủ</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Cửa hàng</li>
                 </ol>
             </nav>
 
@@ -36,8 +36,8 @@
                             <figure class="product-style">
                                 <img src="{{ asset('images/albums/' . ($album->cover_image_url ?? 'default.png')) }}"
                                     alt="{{ $album->album_name }}" class="product-item">
-                                <button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to
-                                    Cart</button>
+                                <button type="button" class="add-to-cart" data-product-tile="add-to-cart">Thêm vào giỏ
+                                    hàng</button>
                                 @if ($album->discount_value)
                                     <span class="badge bg-warning text-dark position-absolute top-0 start-0 m-2"
                                         style="z-index:2;">Giảm giá!</span>

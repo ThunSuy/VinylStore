@@ -9,10 +9,10 @@
             <nav aria-label="breadcrumb" class="">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <a href="{{ url('/') }}">Home</a>
+                        <a href="{{ url('/') }}">Trang chủ</a>
                     </li>
                     <li class="breadcrumb-item">
-                        <a href="{{ route('artists.index') }}">Artists</a>
+                        <a href="{{ route('artists.index') }}">Nghệ sĩ</a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">
                         {{ $artist->artist_name }}
@@ -52,8 +52,8 @@
                             <figure class="product-style">
                                 <img src="{{ asset('images/albums/' . ($album->cover_image_url ?? 'default.png')) }}"
                                     alt="{{ $album->album_name }}" class="product-item">
-                                <button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to
-                                    Cart</button>
+                                <button type="button" class="add-to-cart" data-product-tile="add-to-cart">Thêm vào giỏ
+                                    hàng</button>
                                 @if ($album->discount_value)
                                     <span class="badge bg-warning text-dark position-absolute top-0 start-0 m-2"
                                         style="z-index:2;">Giảm giá!</span>
@@ -66,14 +66,14 @@
                                 <span>{{ $artist->artist_name }}</span>
                                 <div class="item-price">
                                     @if ($album->discount_value)
-                                        <span class="prev-price">${{ number_format($album->price, 2) }}</span>
+                                        <span class="prev-price">${{ number_format($album->price, 0) }}</span>
                                         @if ($album->discount_type == 'percentage')
-                                            ${{ number_format($album->price * (1 - $album->discount_value / 100), 2) }}
+                                            {{ number_format($album->price * (1 - $album->discount_value / 100), 0) }}đ
                                         @else
-                                            ${{ number_format($album->price - $album->discount_value, 2) }}
+                                            {{ number_format($album->price - $album->discount_value, 0) }}đ
                                         @endif
                                     @else
-                                        ${{ number_format($album->price, 2) }}
+                                        {{ number_format($album->price, 0) }}đ
                                     @endif
                                 </div>
                             </figcaption>

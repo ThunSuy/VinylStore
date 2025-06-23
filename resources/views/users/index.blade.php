@@ -19,6 +19,8 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('icomoon/icomoon.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/users/vendor.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/users/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/users/login.css') }}">
+
 
 </head>
 
@@ -50,13 +52,10 @@
                         <div class="right-element">
 
 
-                            <a href="#" class="cart for-buy"><i class="icon icon-clipboard"></i><span>Cart:(0
-                                    $)</span></a>
-                            <a href="#" class="user-account for-buy"><i
-                                    class="icon icon-user"></i><span>Account</span></a>
+                            {{-- Search --}}
                             <div class="action-menu">
                                 <div class="search-bar">
-                                    <a href="#" class="search-button search-toggle" data-selector="#header-wrap">
+                                    <a href="#" class="search-button search-toggle " data-selector="#header-wrap">
                                         <i class="icon icon-search"></i>
                                     </a>
                                     <form role="search" method="get" class="search-box">
@@ -66,6 +65,19 @@
                                 </div>
 
                             </div>
+
+
+                            {{-- Cart --}}
+                            <a href="#" class="cart for-buy"><i class="icon icon-clipboard"></i><span>Giỏ hàng:(0
+                                    $)</span></a>
+
+
+                            {{-- Account --}}
+                            <a href="{{ auth()->check() ? route('profile') : route('login') }}"
+                                class="user-account for-buy">
+                                <i class="icon icon-user"></i><span>Đăng nhập</span>
+                            </a>
+
 
                         </div><!--top-right-->
                     </div>
@@ -93,20 +105,20 @@
 
                                     {{-- item Home --}}
                                     <li class="{{ request()->is('/') ? 'active' : '' }}">
-                                        <a href="{{ url('/') }}">Home</a>
+                                        <a href="{{ url('/') }}">Trang chủ</a>
                                     </li>
 
 
                                     {{-- item Shop --}}
                                     <li class="menu-item {{ request()->is('shop') ? 'active' : '' }}">
-                                        <a href="{{ route('shop.index') }}" class="nav-link">Shop</a>
+                                        <a href="{{ route('shop.index') }}" class="nav-link">Cửa hàng</a>
                                     </li>
 
 
                                     {{-- item Genres --}}
                                     <li
                                         class="menu-item has-sub {{ request()->is('genres') || request()->is('genres/*') ? 'active' : '' }}">
-                                        <a href="{{ route('genres.index') }}" class="nav-link">Genres</a>
+                                        <a href="{{ route('genres.index') }}" class="nav-link">Thể loại</a>
                                         <ul>
                                             <li class="{{ request()->is('genres') ? 'active' : '' }}">
                                                 <a href="{{ route('genres.index') }}">ALL</a>
@@ -129,7 +141,7 @@
                                     {{-- item Artists --}}
                                     <li
                                         class="{{ request()->is('artists') || request()->is('artists/*') ? 'active' : '' }}">
-                                        <a href="{{ route('artists.index') }}">Artists</a>
+                                        <a href="{{ route('artists.index') }}">Nghệ sĩ</a>
                                     </li>
 
                                     {{-- <li class="menu-item"><a href="#download-app" class="nav-link">Download App</a> --}}

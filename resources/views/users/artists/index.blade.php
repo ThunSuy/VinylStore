@@ -6,8 +6,8 @@
         {{-- Breadcrumb --}}
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Artists</li>
+                <li class="breadcrumb-item"><a href="{{ url('/') }}">Trang chủ</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Nghệ sĩ</li>
             </ol>
         </nav>
 
@@ -23,7 +23,7 @@
                                 style="aspect-ratio:1/1;object-fit:cover;">
                             <div class="card-body">
                                 <h5 class="card-title text-uppercase fw-bold">{{ $artist->artist_name }}</h5>
-                                <p class="card-text text-muted small mb-0">{{ $artist->product_count }} PRODUCT</p>
+                                <p class="card-text text-muted small mb-0">{{ $artist->product_count }} Sản phẩm</p>
                             </div>
                         </div>
                     </a>

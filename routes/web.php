@@ -5,6 +5,7 @@ use App\Http\Controllers\ArtistController;
 use App\Http\Controllers\GenreController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ShopController;
 
 /*
@@ -42,3 +43,8 @@ Route::get('/albums/{album_id}', [AlbumController::class, 'show'])->name('albums
 
 // Shop page
 Route::get('/shop', [ShopController::class, 'index'])->name('shop.index');
+
+
+// Login page
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+// Route::post('/login', [LoginController::class, 'login']);
