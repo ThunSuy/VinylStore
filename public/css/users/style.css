@@ -784,6 +784,7 @@ fieldset {
   margin-bottom: 1.5rem;
 }
 
+
 pre,
 blockquote,
 dl,
@@ -1714,7 +1715,7 @@ img.post-image {
 }
 
 .top-content li {
-  padding-right: 30px;
+  /* padding-right: 30px; */
 }
 
 .top-content li:last-child {
@@ -1777,7 +1778,7 @@ img.post-image {
 }
 
 #header-wrap.show .search-bar {
-  width: 400px;
+  width: 300px;
 }
 
 #header-wrap {
@@ -1787,21 +1788,28 @@ img.post-image {
   width: 100%;
   z-index: 2999;
   background: #f3f2ec;
-  transition: transform 0.4s cubic-bezier(0.4,0,0.2,1), box-shadow 0.3s;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
   transform: none;
 }
 
 #header-wrap.header-fixed {
   position: fixed;
   transform: translateY(-100%);
-  animation: headerSlideDown 0.4s cubic-bezier(0.4,0,0.2,1) forwards;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.12);
+  animation: headerSlideDown 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
 }
+
 @keyframes headerSlideDown {
-  from { transform: translateY(-40%); }
-  to   { transform: translateY(0); }
+  from {
+    transform: translateY(-40%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
 }
+
 /* #header-wrap {
   position: relative;
   z-index: 2000;
@@ -1834,7 +1842,7 @@ img.post-image {
 
 
 #header-wrap .search-box .search-input {
-  width: 350px;
+  width: 250px;
   border: 0;
   margin-bottom: 0;
   font-weight: 300;
@@ -1889,12 +1897,86 @@ img.post-image {
   color: var(--accent-color);
 }
 
-.main-menu .menu-list > li.has-sub > ul {
+.main-menu .menu-list>li.has-sub>ul {
   position: absolute;
   z-index: 1002;
   /* background: #fff;
   box-shadow: 0 4px 24px rgba(0,0,0,0.08); */
 }
+
+
+.account-menu-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+
+.account-dropdown {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 100%;
+  background-color: #f3f2ed;
+  min-width: 240px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-radius: 6px;
+  overflow: hidden;
+  text-align: start;
+}
+
+.account-dropdown li {
+  /* border-bottom: 1px solid #eee; */
+}
+
+.account-dropdown li:last-child {
+  border-bottom: none;
+}
+
+.account-dropdown a,
+.account-dropdown button {
+  padding: 10px 16px;
+  display: block;
+  text-decoration: none;
+  color: #333;
+  background-color: #f3f2ed;
+  width: 100%;
+}
+
+.account-dropdown a:hover,
+.account-dropdown button:hover {
+  background-color: #ccc8b3;
+}
+
+.account-menu-wrapper:hover .account-dropdown {
+  display: block;
+}
+
+.logout-form {
+  margin: 0;
+  padding: 0;
+}
+
+.account-dropdown-btn {
+  all: unset;
+  /* Xóa hết CSS mặc định của button */
+  display: block;
+  width: 100%;
+  padding: 10px 16px;
+  text-align: left;
+  color: #333;
+  background-color: white;
+  cursor: pointer;
+}
+
+.account-dropdown-btn:hover {
+  background-color: #f5f5f5;
+}
+
+
 
 /*----- Billboard
 --------------------------------------------------------------*/
@@ -2260,8 +2342,7 @@ span.prev-price {
 
 /*----- Latest Blog Section
 --------------------------------------------------------------*/
-#latest-blog {
-}
+#latest-blog {}
 
 #latest-blog article.column {
   margin-bottom: 60px;
@@ -2470,6 +2551,7 @@ footer#footer {
   color: #74642F;
   margin: 0;
 }
+
 .product-item figcaption>p {
   margin: 0;
 }
@@ -2480,15 +2562,15 @@ footer#footer {
 }
 
 .artist-card:hover {
-    box-shadow: 0 4px 24px rgba(0,0,0,0.12);
-    transform: translateY(-4px) scale(1.03);
-    transition: all 0.2s;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+  transform: translateY(-4px) scale(1.03);
+  transition: all 0.2s;
 }
 
 .product-card .badge.bg-warning {
-    font-size: 0.9rem;
-    padding: 0.5em 1em;
-    border-radius: 0.5em;
+  font-size: 0.9rem;
+  padding: 0.5em 1em;
+  border-radius: 0.5em;
 }
 
 .breadcrumb-item {
@@ -2496,79 +2578,82 @@ footer#footer {
 }
 
 
-.genre-card{
+.genre-card {
   background: #efeee9;
 }
 
-.artist-card{
+.artist-card {
   background: #efeee9;
 }
 
 .genre-card:hover {
-    box-shadow: 0 4px 24px rgba(0,0,0,0.12);
-    transform: translateY(-4px) scale(1.03);
-    transition: all 0.2s;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+  transform: translateY(-4px) scale(1.03);
+  transition: all 0.2s;
 }
 
-.menu-list > li.active > a,
-.menu-list > li > ul > li.active > a {
-    color: #f0af45 !important;/* hoặc màu bạn muốn */
-    font-weight: bold;
+.menu-list>li.active>a,
+.menu-list>li>ul>li.active>a {
+  color: #f0af45 !important;
+  /* hoặc màu bạn muốn */
+  font-weight: bold;
 }
 
 /* Ngăn chặn style active lan sang các li con */
-.menu-list > li.has-sub.active > ul > li > a {
-    color: inherit !important;
-    font-weight: normal;
+.menu-list>li.has-sub.active>ul>li>a {
+  color: inherit !important;
+  font-weight: normal;
 }
 
-.menu-list > li.has-sub > ul > li:hover > a {
-    background: #ffd28a;      /* màu nền khi hover */
-    color: #fff !important;   /* màu chữ khi hover */
-    font-weight: bold;
-    transition: background 0.2s, color 0.2s;
+.menu-list>li.has-sub>ul>li:hover>a {
+  background: #ffd28a;
+  /* màu nền khi hover */
+  color: #fff !important;
+  /* màu chữ khi hover */
+  font-weight: bold;
+  transition: background 0.2s, color 0.2s;
 }
 
 /* Quantity selector custom style */
 .quantity-form {
-    gap: 0;
+  gap: 0;
 }
 
 .qty-btn {
-    width: 50px;
-    height: 50px;
-    background: #212429;
-    color: #fff;
-    border: none;
-    /* font-size: 1.5rem; */
-    font-weight: bold;
-    transition: all 0.2s;
-    border-radius: 3px;
-    outline: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  width: 50px;
+  height: 50px;
+  background: #212429;
+  color: #fff;
+  border: none;
+  /* font-size: 1.5rem; */
+  font-weight: bold;
+  transition: all 0.2s;
+  border-radius: 3px;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .qty-btn:hover, .qty-btn:focus {
-    background: #868686;
-    color: #212429;
-    /* border: 2px solid #111; */
+  background: #868686;
+  color: #212429;
+  /* border: 2px solid #111; */
 }
 
 .qty-input {
-    width: 53px;
-    height: 50px;
-    margin: 0px 4px;
-    /* border: 1px solid #171717 !important; */
-    font-size: 1.2rem;
-    text-align: center;
-    border-radius: 0 !important;
-    -webkit-border-radius: 0 !important;
-    -moz-border-radius: 0 !important;
-    -ms-border-radius: 0 !important;
-    -o-border-radius: 0 !important;
-    box-shadow: none;
+  width: 53px;
+  height: 50px;
+  margin: 0px 4px;
+  /* border: 1px solid #171717 !important; */
+  font-size: 1.2rem;
+  text-align: center;
+  border-radius: 0 !important;
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  -ms-border-radius: 0 !important;
+  -o-border-radius: 0 !important;
+  box-shadow: none;
 }
 
 #footer {

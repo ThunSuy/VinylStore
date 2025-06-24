@@ -56,3 +56,4 @@ Route::get('auth/google/callback', [LoginController::class, 'handleGoogleCallbac
 // User account page
 Route::get('/account/profile', [UserController::class, 'profile'])->name('account.profile');
 Route::post('/account/profile', [UserController::class, 'updateProfile'])->name('profile.update');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');

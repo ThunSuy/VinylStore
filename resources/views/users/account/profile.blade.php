@@ -2,31 +2,33 @@
 @extends('users.index')
 
 @section('content')
-    <div class="profile-wrapper">
-        @if (session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @endif
+    <form method="POST" action="{{ route('profile.update') }}" enctype="multipart/form-data">
 
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul class="mb-0">
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-        <div class="profile-left">
+        <div class="profile-wrapper">
+            @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
 
-            {{-- Title  --}}
-            <div class="profile-header">Hồ Sơ Của Tôi</div>
-            <div class="profile-subtitle">Quản lý thông tin hồ sơ để bảo mật tài khoản</div>
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul class="mb-0">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+            @csrf
+            <div class="profile-left">
 
-            {{-- Form  --}}
-            <form method="POST" action="{{ route('profile.update') }}" enctype="multipart/form-data">
-                @csrf
+                {{-- Title  --}}
+                <div class="profile-header">Hồ Sơ Của Tôi</div>
+                <div class="profile-subtitle">Quản lý thông tin hồ sơ để bảo mật tài khoản</div>
+
+                {{-- Form  --}}
+
 
                 {{-- Input Name --}}
                 <div class="form-group">
@@ -65,30 +67,39 @@
 
                 {{-- Btn Save  --}}
                 <button class="save-btn">Lưu</button>
-            </form>
 
-        </div>
-        <div class="profile-right">
 
-            {{-- Avatar  --}}
-            <div class="avatar-placeholder">
-                <img src="{{ $user->avatar_url }}" alt="avatar"
-                    style="width:100%;height:100%;border-radius:50%; ;object-fit:cover;object-position:center;"
-                    id="avatarImg">
+            </div>
+            <div class="profile-right">
+
+                {{-- Avatar  --}}
+                <div class="avatar-placeholder">
+                    <img src="{{ $user->avatar_url }}?v={{ time() }}" alt="avatar"
+                        style="width:100%;height:100%;border-radius:50%;object-fit:cover;object-position:center;"
+                        id="avatarImg">
+                </div>
+                {{-- <div class="avatar-placeholder">
+                    <img src="{{ $user->avatar_url }}" alt="avatar"
+                        style="width:100%;height:100%;border-radius:50%; ;object-fit:cover;object-position:center;"
+                        id="avatarImg">
+                </div> --}}
+
+                {{-- Btn change avt --}}
+                <label class="avatar-upload-btn" style="border:1px solid #dacaa4;">
+                    Chọn Ảnh
+                    <input type="file" name="avatar" accept=".jpg,.jpeg,.png,.webp" style="display:none;"
+                        id="avatarInput">
+                </label>
+                <div class="avatar-note">
+                    Dung lượng file tối đa 4 MB<br>
+                    Định dạng: .JPEG, .PNG, WEBP
+                </div>
+
+
             </div>
 
-            {{-- Btn change avt --}}
-            <label class="avatar-upload-btn" style="border:1px solid #dacaa4;">
-                Chọn Ảnh
-                <input type="file" name="avatar" accept=".jpg,.jpeg,.png,.webp" style="display:none;" id="avatarInput">
-            </label>
-            <div class="avatar-note">
-                Dung lượng file tối đa 1 MB<br>
-                Định dạng: .JPEG, .PNG
-            </div>
         </div>
-    </div>
-
+    </form>
     <script>
         document.getElementById('avatarInput').addEventListener('change', function(e) {
             const [file] = e.target.files;

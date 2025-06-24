@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -25,7 +26,7 @@ class UserController extends Controller
             'full_name' => 'required|string|max:255',
             'phone' => 'nullable|string|max:20',
             'address' => 'nullable|string|max:255',
-            'avatar' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:1024',
+            'avatar' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:4096',
         ]);
 
         $changed = false;
@@ -44,9 +45,17 @@ class UserController extends Controller
         }
 
         if ($request->hasFile('avatar')) {
+            // Xoá avatar cũ nếu không phải ảnh Google
+            if ($user->avatar_url && !str_contains($user->avatar_url, 'googleusercontent.com')) {
+                $oldPath = str_replace('/storage/', '', $user->avatar_url); // Bỏ prefix để xóa đúng file
+                Storage::disk('public')->delete($oldPath);
+            }
+
+            // Lưu ảnh mới
             $file = $request->file('avatar');
             $filename = 'avatar_' . $user->user_id . '_' . time() . '.' . $file->getClientOriginalExtension();
-            $path = $file->storeAs('images/avatars', $filename, 'public');
+            $path = $file->storeAs('images/avatars', $filename, 'public'); // Lưu vào storage/app/public/images/avatars
+
             $user->avatar_url = '/storage/' . $path;
             $changed = true;
         }

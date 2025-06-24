@@ -86,38 +86,41 @@
         <div class="row product-slider">
             @foreach ($related as $item)
                 <div class="col-md-3">
-                    <div class="product-item">
-                        <figure class="product-style">
-                            <img src="{{ asset('images/albums/' . ($item->cover_image_url ?? 'default.png')) }}"
-                                alt="{{ $item->album_name }}" class="product-item">
-                            <button type="button" class="add-to-cart" data-product-tile="add-to-cart">
-                                Add to Cart
-                            </button>
-                            @if ($item->discount_value)
-                                <span class="badge bg-warning text-dark position-absolute top-0 start-0 m-2">Giảm
-                                    giá!</span>
-                            @endif
-                            {{-- @if ($item->stock === 0)
+                    <a href="{{ route('albums.show', ['album_id' => $item->album_id]) }}"
+                        class="text-decoration-none text-dark">
+                        <div class="product-item">
+                            <figure class="product-style">
+                                <img src="{{ asset('images/albums/' . ($item->cover_image_url ?? 'default.png')) }}"
+                                    alt="{{ $item->album_name }}" class="product-item">
+                                <button type="button" class="add-to-cart" data-product-tile="add-to-cart">
+                                    Add to Cart
+                                </button>
+                                @if ($item->discount_value)
+                                    <span class="badge bg-warning text-dark position-absolute top-0 start-0 m-2">Giảm
+                                        giá!</span>
+                                @endif
+                                {{-- @if ($item->stock === 0)
                     <span class="badge bg-danger position-absolute top-0 end-0 m-2">HẾT HÀNG</span>
                 @endif --}}
-                        </figure>
-                        <figcaption>
-                            <h3>{{ $item->artist_name }} – {{ $item->album_name }} – Đĩa Than</h3>
-                            <span>{{ $item->artist_name }}</span>
-                            <div class="item-price">
-                                @if ($item->discount_value)
-                                    <span class="prev-price">${{ number_format($item->price, 0) }}đ</span>
-                                    @if ($item->discount_type == 'percentage')
-                                        {{ number_format($item->price * (1 - $item->discount_value / 100), 0) }}đ
+                            </figure>
+                            <figcaption>
+                                <h3>{{ $item->artist_name }} – {{ $item->album_name }} – Đĩa Than</h3>
+                                <span>{{ $item->artist_name }}</span>
+                                <div class="item-price">
+                                    @if ($item->discount_value)
+                                        <span class="prev-price">${{ number_format($item->price, 0) }}đ</span>
+                                        @if ($item->discount_type == 'percentage')
+                                            {{ number_format($item->price * (1 - $item->discount_value / 100), 0) }}đ
+                                        @else
+                                            {{ number_format($item->price - $item->discount_value, 0) }}đ
+                                        @endif
                                     @else
-                                        {{ number_format($item->price - $item->discount_value, 0) }}đ
+                                        {{ number_format($item->price, 0) }}đ
                                     @endif
-                                @else
-                                    {{ number_format($item->price, 0) }}đ
-                                @endif
-                            </div>
-                        </figcaption>
-                    </div>
+                                </div>
+                            </figcaption>
+                        </div>
+                    </a>
                 </div>
             @endforeach
 

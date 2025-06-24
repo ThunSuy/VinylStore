@@ -74,15 +74,50 @@
 
 
                             {{-- Account --}}
-                            <a href="{{ auth()->check() ? url('/account/profile') : route('login') }}"
-                                class="user-account for-buy">
-                                <i class="icon icon-user"></i>
-                                @if (auth()->check())
-                                    <span>{{ auth()->user()->full_name ?? auth()->user()->email }}</span>
-                                @else
+                            @if (auth()->check())
+                                <div class="account-menu-wrapper">
+                                    <div class="user-account for-buy">
+                                        <img src="{{ auth()->user()->avatar_url }}?v={{ strtotime(auth()->user()->updated_at) }}"
+                                            alt="avatar"
+                                            style="width:27px;height:27px;border-radius:50%;object-fit:cover;margin-right:3px;">
+                                        <span>{{ auth()->user()->full_name ?? auth()->user()->email }}</span>
+                                    </div>
+
+                                    <ul class="account-dropdown">
+                                        <li>
+
+                                            <a href="{{ url('/account/profile') }}"><i class="icon icon-user"></i>
+                                                Hồ sơ
+                                                của tôi</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ url('/account/orders') }}"><i class="icon icon-clipboard"></i>
+                                                Đơn
+                                                hàng</a>
+                                        </li>
+                                        <li>
+                                            <form method="POST"
+                                                action="
+                                            {{ route('logout') }}
+                                             "
+                                                class="logout-form">
+                                                @csrf
+                                                <button type="submit" class="account-dropdown-btn"><i
+                                                        class="icon icon-arrow-right-circle"></i> Đăng xuất</button>
+                                            </form>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            @else
+                                <a href="{{ route('login') }}" class="user-account for-buy">
+                                    <i class="icon icon-user"></i>
                                     <span>Đăng nhập</span>
-                                @endif
-                            </a>
+                                </a>
+                            @endif
+
+
+
 
 
                         </div><!--top-right-->
