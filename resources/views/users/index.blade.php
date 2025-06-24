@@ -21,6 +21,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/users/style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/users/login.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/users/profile.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/users/cart.css') }}">
 
 
 </head>
@@ -69,7 +70,8 @@
 
 
                             {{-- Cart --}}
-                            <a href="#" class="cart for-buy"><i class="icon icon-clipboard"></i><span>Giỏ hàng:(0
+                            <a href="{{ url('/cart') }}" class="cart for-buy"><i
+                                    class="icon icon-clipboard"></i><span>Giỏ hàng:(0
                                     $)</span></a>
 
 
@@ -91,16 +93,12 @@
                                                 của tôi</a>
                                         </li>
                                         <li>
-                                            <a href="{{ url('/account/orders') }}"><i class="icon icon-clipboard"></i>
+                                            <a href="{{ url('/account/cart') }}"><i class="icon icon-clipboard"></i>
                                                 Đơn
                                                 hàng</a>
                                         </li>
                                         <li>
-                                            <form method="POST"
-                                                action="
-                                            {{ route('logout') }}
-                                             "
-                                                class="logout-form">
+                                            <form method="POST" action="{{ route('logout') }}" class="logout-form">
                                                 @csrf
                                                 <button type="submit" class="account-dropdown-btn"><i
                                                         class="icon icon-arrow-right-circle"></i> Đăng xuất</button>

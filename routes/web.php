@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\ArtistController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\GenreController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -57,3 +58,7 @@ Route::get('auth/google/callback', [LoginController::class, 'handleGoogleCallbac
 Route::get('/account/profile', [UserController::class, 'profile'])->name('account.profile');
 Route::post('/account/profile', [UserController::class, 'updateProfile'])->name('profile.update');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+
+// Cart page
+Route::get('/cart', [CartController::class, 'index'])->name('cart');

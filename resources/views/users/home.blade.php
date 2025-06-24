@@ -26,8 +26,11 @@
                                         </a>
                                     </div>
                                 </div><!--banner-content-->
-                                <img src="{{ asset('images/albums/' . ($album->cover_image_url ?? 'default.png')) }}"
-                                    alt="banner" class="banner-image" style="width: 500px;height: auto;">
+                                <a href="{{ route('albums.show', ['album_id' => $album->album_id]) }}"><img
+                                        src="{{ asset('images/albums/' . ($album->cover_image_url ?? 'default.png')) }}"
+                                        alt="banner" class="banner-image" style="width: 500px;height: auto;"></a>
+
+
                             </div><!--slider-item-->
                         @endforeach
                     </div><!--slider-->
