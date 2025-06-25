@@ -24,9 +24,51 @@
                             <th>GIÁ</th>
                             <th>SỐ LƯỢNG</th>
                             <th>TẠM TÍNH</th>
+                            <th></th>
+
                         </tr>
                     </thead>
                     <tbody>
+                        @if (auth()->check())
+                            {{-- Hiển thị cart từ DB --}}
+                        @else
+                            @forelse($cart as $item)
+                                <tr>
+                                    <td>
+                                        <div class="cart-product-info">
+                                            <a href="{{ route('albums.show', ['album_id' => $item['album_id']]) }}">
+                                                <img src="{{ asset('images/albums/' . $item['cover_image_url']) }}"
+                                                    alt="logo">
+                                            </a>
+                                            <span>{{ $item['album_name'] }}</span>
+                                        </div>
+                                    </td>
+                                    <td>{{ number_format($item['price'], 0) }} ₫</td>
+                                    <td>
+                                        <div class="cart-quantity">
+                                            <button>-</button>
+                                            <input type="number" value="{{ $item['qty'] }}" min="1" />
+                                            <button>+</button>
+                                        </div>
+                                    </td>
+                                    <td style="color: black">{{ number_format($item['price'] * $item['qty'], 0) }} ₫</td>
+                                    <td>
+                                        {{-- <button type="button" class="btn btn-link text-danger p-0"
+                                            onclick="removeCartItem({{ $item['album_id'] }})" title="Xóa"> --}}
+                                        <i class="icon icon-cancel text-danger"
+                                            onclick="removeCartItem({{ $item['album_id'] }})" title="Xóa"></i>
+                                        {{-- </button> --}}
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="4">Giỏ hàng trống</td>
+                                </tr>
+                            @endforelse
+                        @endif
+                    </tbody>
+
+                    {{-- <tbody>
                         <tr>
                             <td>
                                 <div class="cart-product-info">
@@ -61,7 +103,7 @@
                             </td>
                             <td style="color: black">1.700.000 ₫</td>
                         </tr>
-                    </tbody>
+                    </tbody> --}}
                 </table>
 
                 <div class="cart-buttons">
@@ -100,4 +142,7 @@
             </div>
         </div>
     </div>
+
+    <script src="{{ asset('js/users/cart-guest.js') }}"></script>
+
 @endsection

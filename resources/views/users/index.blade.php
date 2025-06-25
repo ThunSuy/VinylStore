@@ -71,8 +71,7 @@
 
                             {{-- Cart --}}
                             <a href="{{ url('/cart') }}" class="cart for-buy"><i
-                                    class="icon icon-clipboard"></i><span>Giỏ hàng:(0
-                                    $)</span></a>
+                                    class="icon icon-clipboard"></i><span>Giỏ hàng:(0)</span></a>
 
 
                             {{-- Account --}}

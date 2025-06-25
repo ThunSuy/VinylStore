@@ -61,9 +61,18 @@
                 </form>
 
                 {{-- Add to Cart Button --}}
-                <button class="btn btn-dark w-50 text-uppercase fw-bold">
+                <button type="button" class="add-to-cart btn btn-dark w-50 text-uppercase fw-bold"
+                    onclick="addToCartGuest({
+                    album_id: {{ $album->album_id }},
+                    album_name: '{{ $album->album_name }}',
+                    price: {{ $album->price }},
+                    cover_image_url: '{{ $album->cover_image_url ?? 'default.png' }}',
+                    qty: parseInt(document.getElementById('qty').value)
+                })">
                     Thêm vào giỏ hàng
                 </button>
+
+
                 <div class="mb-5">
                     <div class="fw-bold">Mô tả sản phẩm:</div>
                     <div>{{ $album->description }}</div>
@@ -135,4 +144,6 @@
             qty.value = val;
         }
     </script>
+
+    <script src="{{ asset('js/users/cart-guest.js') }}"></script>
 @endsection
