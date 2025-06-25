@@ -11,7 +11,8 @@ function addToCartGuest(product) {
         cart.push(product);
     }
     document.cookie = "cart=" + encodeURIComponent(JSON.stringify(cart)) + ";path=/;max-age=604800";
-    alert('Đã thêm vào giỏ hàng!');
+    // alert('Đã thêm vào giỏ hàng!');
+    customNotice('icon icon-clipboard', 'Đã thêm vào giỏ hàng!', 4);
 }
 
 function removeCartItem(album_id) {

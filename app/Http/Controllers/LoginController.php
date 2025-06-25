@@ -10,45 +10,28 @@ use Laravel\Socialite\Facades\Socialite;
 
 class LoginController extends Controller
 {
-
-
     public function showLoginForm()
     {
         $genres = DB::table('genres')->get();
         return view('users.login', compact('genres'));
     }
 
-    public function login(Request $request)
-    {
-        $credentials = $request->only('email', 'password');
-
-        if (auth()->attempt($credentials)) {
-            $request->session()->regenerate();
-            return redirect()->intended('/');
-        }
-
-        return back()->withErrors([
-            'email' => 'Thông tin đăng nhập không đúng.',
-        ])->withInput();
-    }
-
-
-
     public function redirectToGoogle()
     {
         return Socialite::driver('google')->redirect();
     }
 
-    public function handleGoogleCallback()
+    public function handleGoogleCallback(Request $request)
     {
         $googleUser = Socialite::driver('google')
             ->stateless()
             ->user();
 
-        // Tìm hoặc tạo user
         $user = User::where('google_id', $googleUser->getId())
             ->orWhere('email', $googleUser->getEmail())
             ->first();
+
+        $isFirstLogin = false;
 
         if (!$user) {
             $user = User::create([
@@ -57,15 +40,46 @@ class LoginController extends Controller
                 'full_name' => $googleUser->getName(),
                 'avatar_url' => $googleUser->getAvatar(),
                 'password' => null,
+                'last_login' => now(),
             ]);
+            $isFirstLogin = true;
         } else {
-            // Cập nhật google_id nếu chưa có
             if (!$user->google_id) {
                 $user->google_id = $googleUser->getId();
-                $user->save();
+            }
+
+            // Kiểm tra xem đây có phải lần đầu login không
+            $isFirstLogin = is_null($user->last_login);
+            $user->last_login = now();
+            $user->save();
+        }
+
+        return $this->completeLogin($request, $user, $isFirstLogin);
+    }
+
+    private function completeLogin(Request $request, User $user, bool $isFirstLogin = false)
+    {
+        Auth::login($user, true);
+
+        // Nếu là lần đầu login, đồng bộ cart từ cookie
+        if ($isFirstLogin) {
+            $cartCookie = $request->cookie('cart');
+            if ($cartCookie) {
+                $cartItems = json_decode(urldecode($cartCookie), true) ?? [];
+                foreach ($cartItems as $item) {
+                    DB::table('cart')->updateOrInsert(
+                        [
+                            'user_id' => $user->user_id,
+                            'album_id' => $item['album_id'],
+                        ],
+                        [
+                            'quantity' => $item['qty'],
+                            'added_at' => now(),
+                        ]
+                    );
+                }
             }
         }
-        Auth::login($user, true);
 
         return redirect()->intended('/');
     }

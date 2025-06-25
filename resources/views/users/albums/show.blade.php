@@ -1,4 +1,5 @@
 @extends('users.index')
+@include('components.toast')
 
 @section('content')
     <div class="container py-4">
@@ -62,6 +63,7 @@
 
                 {{-- Add to Cart Button --}}
                 <button type="button" class="add-to-cart btn btn-dark w-50 text-uppercase fw-bold"
+                    id="kt_docs_toast_stack_button"
                     onclick="addToCartGuest({
                     album_id: {{ $album->album_id }},
                     album_name: '{{ $album->album_name }}',
@@ -136,6 +138,27 @@
         </div>
     </div>
 
+
+    <!--begin::Toast-->
+    <div id="kt_docs_toast_stack_container" class="toast-container position-fixed top-0 end-0 p-3 z-index-3"
+        style="z-index:99999;">
+        <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-kt-docs-toast="stack">
+            <div class="toast-header">
+                <i class="ki-duotone ki-abstract-23 fs-2 text-success me-3"><span class="path1"></span><span
+                        class="path2"></span></i>
+                <strong class="me-auto">Vinyl Store</strong>
+                <small>Bây giờ</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                Đã thêm vào giỏ hàng.
+            </div>
+            <div class="toast-progress-bar"></div>
+        </div>
+    </div>
+    <!--end::Toast-->
+
+
     <script>
         function changeQty(delta) {
             var qty = document.getElementById('qty');
@@ -144,6 +167,46 @@
             qty.value = val;
         }
     </script>
+    <script src="{{ asset('js/users/toast.js') }}"></script>
+
+    <style>
+        .toast.slide-in-right {
+            animation: slideInRight 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(120%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .toast-progress-bar {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #f0af45, #e53935);
+            width: 100%;
+            animation: toastProgress 5s linear forwards;
+            border-radius: 0 0 0.5rem 0.5rem;
+        }
+
+        @keyframes toastProgress {
+            from {
+                width: 100%;
+            }
+
+            to {
+                width: 0%;
+            }
+        }
+    </style>
 
     <script src="{{ asset('js/users/cart-guest.js') }}"></script>
 @endsection
