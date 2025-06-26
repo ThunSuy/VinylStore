@@ -78,6 +78,8 @@ class LoginController extends Controller
                         ]
                     );
                 }
+
+                return redirect()->intended('/')->withCookie(cookie()->forget('cart'));
             }
         }
 

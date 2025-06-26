@@ -62,3 +62,4 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // Cart page
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
+Route::delete('/cart/{album_id}', [CartController::class, 'delete'])->name('cart.delete');

@@ -23,4 +23,5 @@ function removeCartItem(album_id) {
     cart = cart.filter(item => item.album_id !== album_id);
     document.cookie = "cart=" + encodeURIComponent(JSON.stringify(cart)) + ";path=/;max-age=604800";
     location.reload();
+    customNotice('icon icon-clipboard', 'Đã xóa khỏi giỏ hàng!', 4);
 }

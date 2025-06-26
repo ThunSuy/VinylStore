@@ -1,4 +1,5 @@
 @extends('users.index')
+@include('components.toast')
 
 @section('content')
     <div class="cart-container">
@@ -28,82 +29,100 @@
 
                         </tr>
                     </thead>
+
                     <tbody>
-                        @if (auth()->check())
-                            {{-- Hiển thị cart từ DB --}}
-                        @else
-                            @forelse($cart as $item)
-                                <tr>
-                                    <td>
-                                        <div class="cart-product-info">
-                                            <a href="{{ route('albums.show', ['album_id' => $item['album_id']]) }}">
-                                                <img src="{{ asset('images/albums/' . $item['cover_image_url']) }}"
-                                                    alt="logo">
-                                            </a>
-                                            <span>{{ $item['album_name'] }}</span>
-                                        </div>
-                                    </td>
-                                    <td>{{ number_format($item['price'], 0) }} ₫</td>
-                                    <td>
-                                        <div class="cart-quantity">
-                                            <button>-</button>
-                                            <input type="number" value="{{ $item['qty'] }}" min="1" />
-                                            <button>+</button>
-                                        </div>
-                                    </td>
-                                    <td style="color: black">{{ number_format($item['price'] * $item['qty'], 0) }} ₫</td>
-                                    <td>
-                                        {{-- <button type="button" class="btn btn-link text-danger p-0"
-                                            onclick="removeCartItem({{ $item['album_id'] }})" title="Xóa"> --}}
+                        @forelse($cart as $item)
+                            <tr>
+                                <td>
+                                    <div class="cart-product-info">
+                                        <a
+                                            href="{{ route('albums.show', ['album_id' => $item->album_id ?? $item['album_id']]) }}">
+                                            <img src="{{ asset('images/albums/' . ($item->cover_image_url ?? $item['cover_image_url'])) }}"
+                                                alt="logo">
+                                        </a>
+                                        <span>{{ $item->album_name ?? $item['album_name'] }}</span>
+                                    </div>
+                                </td>
+                                <td>{{ number_format($item->price ?? $item['price'], 0) }} ₫</td>
+                                <td>
+                                    <div class="cart-quantity">
+                                        <button>-</button>
+                                        <input type="number" value="{{ $item->qty ?? $item['qty'] }}" min="1" />
+                                        <button>+</button>
+                                    </div>
+                                </td>
+                                <td style="color: black">
+                                    {{ number_format(($item->price ?? $item['price']) * ($item->qty ?? $item['qty']), 0) }}
+                                    ₫</td>
+                                <td>
+                                    @if (auth()->check())
+                                        <form method="POST"
+                                            action="{{ route('cart.delete', ['album_id' => $item->album_id]) }}"
+                                            style="display:inline;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-link text-danger p-0" title="Xóa">
+                                                <i class="icon icon-cancel text-danger"></i>
+                                            </button>
+                                        </form>
+                                    @else
                                         <i class="icon icon-cancel text-danger"
                                             onclick="removeCartItem({{ $item['album_id'] }})" title="Xóa"></i>
-                                        {{-- </button> --}}
-                                    </td>
-                                </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="4">Giỏ hàng trống</td>
-                                </tr>
-                            @endforelse
-                        @endif
+                                    @endif
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="5">Giỏ hàng trống</td>
+                            </tr>
+                        @endforelse
                     </tbody>
-
                     {{-- <tbody>
-                        <tr>
-                            <td>
-                                <div class="cart-product-info">
-                                    <img src="{{ asset('images/main-logo.png') }}" alt="logo">
-                                    <span>VA - Radiohead In Jazz</span>
-                                </div>
-                            </td>
-                            <td>150.000 ₫</td>
-                            <td>
-                                <div class="cart-quantity">
-                                    <button>-</button>
-                                    <input type="number" value="1" />
-                                    <button>+</button>
-                                </div>
-                            </td>
-                            <td style="color: black">1.150.000 ₫</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="cart-product-info">
-                                    <img src="{{ asset('images/main-logo.png') }}" alt="logo">
-                                    <span>Linda McCartney - Wide Prairie (Milk White and Blue Limited Edition)</span>
-                                </div>
-                            </td>
-                            <td>850.000 ₫</td>
-                            <td>
-                                <div class="cart-quantity">
-                                    <button>-</button>
-                                    <input type="number" value="2" />
-                                    <button>+</button>
-                                </div>
-                            </td>
-                            <td style="color: black">1.700.000 ₫</td>
-                        </tr>
+                       
+                        @forelse($cart as $item)
+                            <tr>
+                                <td>
+                                    <div class="cart-product-info">
+                                        <a href="{{ route('albums.show', ['album_id' => $item['album_id']]) }}">
+                                            <img src="{{ asset('images/albums/' . $item['cover_image_url']) }}"
+                                                alt="logo">
+                                        </a>
+                                        <span>{{ $item['album_name'] }}</span>
+                                    </div>
+                                </td>
+                                <td>{{ number_format($item['price'], 0) }} ₫</td>
+                                <td>
+                                    <div class="cart-quantity">
+                                        <button>-</button>
+                                        <input type="number" value="{{ $item['qty'] }}" min="1" />
+                                        <button>+</button>
+                                    </div>
+                                </td>
+                                <td style="color: black">{{ number_format($item['price'] * $item['qty'], 0) }} ₫</td>
+                                
+                                @if (auth()->check())
+                                    <form method="POST"
+                                        action="{{ route('cart.delete', ['album_id' => $item->album_id]) }}"
+                                        style="display:inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-link text-danger p-0" title="Xóa">
+                                            <i class="icon icon-cancel text-danger"></i>
+                                        </button>
+                                    </form>
+                                @else
+                                    <i class="icon icon-cancel text-danger"
+                                        onclick="removeCartItem({{ $item['album_id'] }})" title="Xóa"></i>
+                                @endif
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="4">Giỏ hàng trống</td>
+                            </tr>
+                        @endforelse
+                        
                     </tbody> --}}
+
                 </table>
 
                 <div class="cart-buttons">
@@ -144,5 +163,11 @@
     </div>
 
     <script src="{{ asset('js/users/cart-guest.js') }}"></script>
-
+    @if (session('success'))
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                customNotice('icon icon-check', '{{ session('success') }}', 1);
+            });
+        </script>
+    @endif
 @endsection
