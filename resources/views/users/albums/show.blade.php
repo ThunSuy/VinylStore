@@ -63,14 +63,13 @@
 
                 {{-- Add to Cart Button --}}
                 <button type="button" class="add-to-cart btn btn-dark w-50 text-uppercase fw-bold"
-                    id="kt_docs_toast_stack_button"
-                    onclick="addToCartGuest({
-                    album_id: {{ $album->album_id }},
-                    album_name: '{{ $album->album_name }}',
-                    price: {{ $album->price }},
-                    cover_image_url: '{{ $album->cover_image_url ?? 'default.png' }}',
-                    qty: parseInt(document.getElementById('qty').value)
-                })">
+                    onclick="handleAddToCart({
+                        album_id: {{ $album->album_id }},
+                        album_name: '{{ $album->album_name }}',
+                        price: {{ $album->price }},
+                        cover_image_url: '{{ $album->cover_image_url ?? 'default.png' }}',
+                        qty: parseInt(document.getElementById('qty').value)
+                    })">
                     Thêm vào giỏ hàng
                 </button>
 
@@ -169,44 +168,28 @@
     </script>
     <script src="{{ asset('js/users/toast.js') }}"></script>
 
-    <style>
-        .toast.slide-in-right {
-            animation: slideInRight 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-
-        @keyframes slideInRight {
-            from {
-                transform: translateX(120%);
-                opacity: 0;
-            }
-
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-
-        .toast-progress-bar {
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #f0af45, #e53935);
-            width: 100%;
-            animation: toastProgress 5s linear forwards;
-            border-radius: 0 0 0.5rem 0.5rem;
-        }
-
-        @keyframes toastProgress {
-            from {
-                width: 100%;
-            }
-
-            to {
-                width: 0%;
-            }
-        }
-    </style>
-
     <script src="{{ asset('js/users/cart-guest.js') }}"></script>
+    <script>
+        function handleAddToCart(product) {
+            @if (auth()->check())
+                // Đã đăng nhập: gửi AJAX lên server
+                fetch("{{ route('cart.add') }}", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "X-CSRF-TOKEN": "{{ csrf_token() }}"
+                        },
+                        body: JSON.stringify(product)
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                        customNotice('icon icon-check', 'Đã thêm vào giỏ hàng!', 1);
+                        // Có thể cập nhật số lượng cart ở header nếu muốn
+                    });
+            @else
+                // Chưa đăng nhập: lưu vào cookie như cũ
+                addToCartGuest(product);
+            @endif
+        }
+    </script>
 @endsection

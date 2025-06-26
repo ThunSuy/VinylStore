@@ -3,6 +3,7 @@
 use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\ArtistController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\GenreController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -63,3 +64,9 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 // Cart page
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
 Route::delete('/cart/{album_id}', [CartController::class, 'delete'])->name('cart.delete');
+Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
+Route::post('/cart/ajax/update', [CartController::class, 'ajaxUpdate'])->name('cart.ajaxUpdate');
+
+
+// Checkout page
+Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');

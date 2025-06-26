@@ -120,6 +120,10 @@
       }
     });
 
+    function updateCartCountDisplay(count) {
+      document.getElementById('cart-count-span').innerText = 'Giỏ hàng:(' + count + ')';
+    }
+
     // // Select elements
     // const button = document.getElementById('kt_docs_toast_stack_button');
     // const container = document.getElementById('kt_docs_toast_stack_container');

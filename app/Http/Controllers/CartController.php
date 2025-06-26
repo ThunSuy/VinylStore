@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class CartController extends Controller
@@ -52,27 +53,76 @@ class CartController extends Controller
         return redirect()->back()->with('success', 'Đã xóa sản phẩm khỏi giỏ hàng');
     }
 
-    // public function index(Request $request)
-    // {
-    //     $genres = DB::table('genres')->get();
-    //     $cart = [];
 
-    //     if (!auth()->check() && $request->cookie('cart') !== null) {
-    //         $cartRaw = $request->cookie('cart');
-    //         $cart = json_decode($cartRaw, true);
+    public function add(Request $request)
+    {
+        $user = auth()->user();
+        $data = $request->all();
+        // Nếu đã có album này thì tăng qty, chưa có thì insert mới
+        $cartItem = DB::table('cart')
+            ->where('user_id', $user->user_id)
+            ->where('album_id', $data['album_id'])
+            ->first();
 
-    //         // Nếu lỗi JSON hoặc không phải mảng
-    //         if (!is_array($cart)) {
-    //             $cart = [];
-    //         }
-    //     }
-    //     // dd([
-    //     //     'exists_raw_cookie' => array_key_exists('cart', $_COOKIE), // cookie thô
-    //     //     'has_cookie' => $request->hasCookie('cart'), // Laravel kiểm tra thô
-    //     //     'cookie_data' => $request->cookie('cart'), // Laravel đã giải mã
-    //     // ]);
+        if ($cartItem) {
+            DB::table('cart')
+                ->where('user_id', $user->user_id)
+                ->where('album_id', $data['album_id'])
+                ->update(['quantity' => $cartItem->quantity + $data['qty']]);
+        } else {
+            DB::table('cart')->insert([
+                'user_id' => $user->user_id,
+                'album_id' => $data['album_id'],
+                'quantity' => $data['qty'],
+                'added_at' => now(),
+            ]);
+        }
+        return response()->json(['success' => true]);
+    }
 
+    public function ajaxUpdate(Request $request)
+    {
+        $userId = Auth::id();
+        $albumId = $request->input('album_id');
+        $type = $request->input('type'); // 'increase' or 'decrease'
 
-    //     return view('users.cart.index', compact('cart', 'genres'));
-    // }
+        $cartItem = DB::table('cart')
+            ->where('user_id', $userId)
+            ->where('album_id', $albumId)
+            ->first();
+
+        if (!$cartItem) {
+            return response()->json(['error' => 'Không tìm thấy sản phẩm'], 404);
+        }
+
+        if ($type === 'increase') {
+            DB::table('cart')
+                ->where('user_id', $userId)
+                ->where('album_id', $albumId)
+                ->increment('quantity');
+        } elseif ($type === 'decrease') {
+            if ($cartItem->quantity <= 1) {
+                DB::table('cart')
+                    ->where('user_id', $userId)
+                    ->where('album_id', $albumId)
+                    ->delete();
+                return response()->json(['removed' => true]);
+            } else {
+                DB::table('cart')
+                    ->where('user_id', $userId)
+                    ->where('album_id', $albumId)
+                    ->decrement('quantity');
+            }
+        }
+
+        $newItem = DB::table('cart')
+            ->where('user_id', $userId)
+            ->where('album_id', $albumId)
+            ->first();
+
+        return response()->json([
+            'success' => true,
+            'new_qty' => $newItem->quantity ?? 0,
+        ]);
+    }
 }
