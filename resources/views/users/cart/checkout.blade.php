@@ -5,83 +5,107 @@
         <!-- Breadcrumb -->
         <div class="cart-breadcrumb-container">
             <div class="cart-breadcrumb">
-                <span class="cart-breadcrumb-item cart-active">GIỎ HÀNG</span>
+                <span class="cart-breadcrumb-item">GIỎ HÀNG</span>
                 <span class="cart-breadcrumb-arrow">›</span>
-                <span class="cart-breadcrumb-item">CHI TIẾT THANH TOÁN</span>
+                <span class="cart-breadcrumb-item cart-active">CHI TIẾT THANH TOÁN</span>
                 <span class="cart-breadcrumb-arrow">›</span>
                 <span class="cart-breadcrumb-item">HOÀN THÀNH ĐƠN HÀNG</span>
             </div>
         </div>
 
         <!-- Main Layout -->
-        <div class="cart-main">
-            <!-- Left: Billing Form -->
-            <div class="cart-left" style="width: 60%;">
-                <form action="/checkout/submit" method="POST" class="checkout-form">
+        <form action="{{ route('checkout.submit') }}" method="POST" class="checkout-form" style="padding:0; margin:0">
+            @csrf
+            <div class="cart-main">
+                <!-- Left: Billing Form -->
+                <div class="cart-left" style="width: 60%;">
                     <h3><strong>THÔNG TIN THANH TOÁN</strong></h3>
                     <p style="margin:0px;color:black"><strong>Địa chỉ *</strong></p>
                     <div class="form-row">
-                        <input type="text" name="shipping_address" placeholder="Địa chỉ *" required />
+                        <input type="text" name="shipping_address" placeholder="Địa chỉ *" required
+                            value="{{ old('shipping_address', $user->address ?? '') }}" />
+
+
                         <input type="text" name="address_extra" placeholder="Căn hộ, đơn vị (không bắt buộc)" />
                     </div>
 
                     <p style="margin:0px;color:black"><strong>Số điện thoại *</strong></p>
-                    <input type="text" name="company_name" placeholder="Số điện thoại *" />
-
-                    <p style="margin:0px;color:black"><strong>Tên công ty (tuỳ chọn)</strong></p>
-                    <input type="text" name="company_name" placeholder="Tên công ty (tuỳ chọn)" />
-
-                    <p style="margin:0px;color:black"><strong>Mã bưu điện (tuỳ chọn)</strong></p>
-                    <input type="text" name="postal_code" placeholder="Mã bưu điện (tuỳ chọn)" />
-
+                    <input type="text" name="phone" placeholder="Số điện thoại *"
+                        value="{{ old('phone', $user->phone ?? '') }}" />
 
                     <p style="margin:0px;color:black"><strong>Ghi chú đơn hàng (tuỳ chọn)</strong></p>
                     <textarea name="notes" placeholder="Ghi chú đơn hàng (tuỳ chọn)"></textarea>
-                </form>
-            </div>
+                </div>
+
+                <!-- Right: Order Summary -->
+                <div class="cart-right" style="width: 40%;">
+                    <div class="cart-summary">
+                        <h3><strong>ĐƠN HÀNG CỦA BẠN</strong></h3>
+                        <div class="summary-item">
+                            <span style="color:black">SẢN PHẨM</span>
+                            <span style="color:black">TẠM TÍNH</span>
+                        </div>
+                        @foreach ($cart as $item)
+                            <div class="summary-item">
+                                <div>
+                                    <a href="{{ route('albums.show', ['album_id' => $item->album_id]) }}">
+                                        <img src="{{ asset('images/albums/' . $item->cover_image_url) }}" alt="logo">
+                                    </a>
+                                    <span>{{ $item->album_name }} × {{ $item->quantity }}</span>
+                                </div>
+
+                                <span>{{ number_format($item->price * $item->quantity, 0, ',', '.') }} ₫</span>
+                            </div>
+                        @endforeach
 
 
 
-            <!-- Right: Order Summary -->
-            <div class="cart-right" style="width: 40%;">
-                <div class="cart-summary">
-                    <h3><strong>ĐƠN HÀNG CỦA BẠN</strong></h3>
-                    <div class="summary-item">
-                        <span>SẢN PHẨM</span>
-                        <span>TẠM TÍNH</span>
-                    </div>
-                    <div class="summary-item">
-                        <span>Linda McCartney - Wide Prairie × 1</span>
-                        <span>850.000 ₫</span>
-                    </div>
-                    <div class="summary-item">
-                        <span>Tạm tính</span>
-                        <span>850.000 ₫</span>
-                    </div>
-                    <div class="summary-item">
-                        <span>Giao hàng tiêu chuẩn</span>
-                        <span>30.000 ₫</span>
-                    </div>
-                    <div class="summary-item total">
-                        <strong>Tổng</strong>
-                        <strong>880.000 ₫</strong>
-                    </div>
+                        @php
+                            $subtotal = $cart->sum(function ($item) {
+                                return $item->price * $item->quantity;
+                            });
+                            $shipping = request('shipping', 30000);
+                            $total = $subtotal + $shipping;
+                        @endphp
+                        <div class="summary-item">
+                            <span>Tạm tính</span>
+                            <span>{{ number_format($subtotal, 0, ',', '.') }} ₫</span>
+                        </div>
+                        <div class="summary-item">
+                            <span>Giao hàng tiêu chuẩn</span>
+                            <span>{{ number_format($shipping, 0, ',', '.') }} ₫</span>
+                        </div>
 
-                    <!-- Payment Method -->
-                    <div class="payment-methods">
-                        <label><input type="radio" name="payment_method_id" value="1" checked /> Chuyển khoản ngân
-                            hàng
-                            (Quét mã QR)</label>
-                        <p class="payment-note">Thanh toán qua VietQR. Tự động xác nhận bởi SePay.</p>
-                        <label><input type="radio" name="payment_method_id" value="2" /> Trả tiền mặt khi nhận
-                            hàng</label>
-                    </div>
+                        <div class="summary-item total">
+                            <strong style="color:black">Tổng</strong>
+                            <strong style="color:black">{{ number_format($total, 0, ',', '.') }} ₫</strong>
+                        </div>
 
-                    <!-- Submit -->
-                    <button class="cart-btn cart-btn-full">ĐẶT HÀNG</button>
+                        <!-- Payment Method -->
+                        <div class="payment-methods">
+                            <label class="payment-option">
+                                <input type="radio" name="payment_method_id" value="1" checked />
+                                <span>Thanh toán qua VNPAY</span>
+                            </label>
+                            <label class="payment-option">
+                                <input type="radio" name="payment_method_id" value="2" />
+                                <span>Thanh toán bằng tiền mặt</span>
+                            </label>
+                        </div>
+
+                        <input type="hidden" name="shipping_fee" value="{{ $shipping }}">
+
+                        <!-- Submit -->
+                        <button class="cart-btn cart-btn-full">ĐẶT HÀNG</button>
+                    </div>
                 </div>
             </div>
+        </form>
+        <div class="cart-buttons">
+            <a href="{{ url('/cart') }}">
+                <button class="cart-btn cart-btn-outline">← TRỞ VỀ TRANG TRƯỚC ĐÓ</button>
 
+            </a>
         </div>
     </div>
 @endsection

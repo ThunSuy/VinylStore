@@ -164,8 +164,7 @@
                         <span>Tổng</span>
                         <span style="color: black">0 ₫</span>
                     </div>
-                    <button class="cart-btn cart-btn-full">TIẾN HÀNH THANH TOÁN</button>
-
+                    <button class="cart-btn cart-btn-full" id="checkout-btn">TIẾN HÀNH THANH TOÁN</button>
                     <div class="cart-discount">
                         <p style="margin-bottom:20px">🔖 Mã ưu đãi</p>
                         <input type="text" placeholder="Nhập mã giảm giá" />
@@ -228,6 +227,20 @@
         });
     </script>
 
+    <script>
+        document.getElementById('checkout-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            @if (auth()->check())
+                // Đã đăng nhập: chuyển sang trang checkout
+                const shipping = document.querySelector('input[name="shipping_method"]:checked').value;
+                window.location.href = "{{ url('/checkout') }}" + "?shipping=" + shipping;
+            @else
+                // Chưa đăng nhập: alert và chuyển sang trang đăng nhập
+                alert('Vui lòng đăng nhập để tiến hành thanh toán!');
+                window.location.href = "{{ route('login') }}";
+            @endif
+        });
+    </script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {

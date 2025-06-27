@@ -70,3 +70,9 @@ Route::post('/cart/ajax/update', [CartController::class, 'ajaxUpdate'])->name('c
 
 // Checkout page
 Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+Route::post('/checkout/submit', [CheckoutController::class, 'submit'])->name('checkout.submit');
+Route::get('/checkout/result', [CheckoutController::class, 'paymentResult'])->name('checkout.result');
+
+
+// Payment
+Route::get('/vnpay/return', [\App\Http\Controllers\CheckoutController::class, 'vnpayReturn'])->name('vnpay.return');
