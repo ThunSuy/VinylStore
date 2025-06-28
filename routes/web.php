@@ -58,6 +58,9 @@ Route::get('auth/google/callback', [LoginController::class, 'handleGoogleCallbac
 // User account page
 Route::get('/account/profile', [UserController::class, 'profile'])->name('account.profile');
 Route::post('/account/profile', [UserController::class, 'updateProfile'])->name('profile.update');
+Route::get('/purchase', [UserController::class, 'purchase'])->name('account.purchase');
+Route::get('/purchase/search', [UserController::class, 'search'])->name('purchase.search');
+Route::get('/account/order/{id}', [UserController::class, 'showOrderDetail'])->name('orders.detail');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 

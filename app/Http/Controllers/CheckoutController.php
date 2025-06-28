@@ -66,13 +66,15 @@ class CheckoutController extends Controller
 
         ]);
 
+
         // Thêm từng item vào bảng orderitems
         foreach ($cart as $item) {
+            $unitPrice = $item->quantity * $item->price;
             DB::table('orderitems')->insert([
                 'order_id' => $orderId,
                 'album_id' => $item->album_id,
                 'quantity' => $item->quantity,
-                'unit_price' => $item->price,
+                'unit_price' => $unitPrice,
             ]);
         }
 

@@ -22,6 +22,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/users/login.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/users/profile.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/users/cart.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/users/purchase.css') }}">
 
 
 </head>
@@ -92,7 +93,7 @@
                                                 của tôi</a>
                                         </li>
                                         <li>
-                                            <a href="{{ url('/account/cart') }}"><i class="icon icon-clipboard"></i>
+                                            <a href="{{ url('/purchase') }}"><i class="icon icon-clipboard"></i>
                                                 Đơn
                                                 hàng</a>
                                         </li>

@@ -45,37 +45,7 @@
                                 </td>
                                 <td>{{ number_format($item->price ?? $item['price'], 0) }} ₫</td>
                                 <td>
-                                    {{-- <div class="cart-quantity">
-                                        <button>-</button>
-                                        <input type="number" value="{{ $item->qty ?? $item['qty'] }}" style="height: 42px"
-                                            min="1" />
-                                        <button>+</button>
-                                    </div> --}}
 
-
-                                    {{-- <div class="cart-quantity">
-                                        @if (auth()->check())
-                                            <form method="POST" style="margin :0"
-                                                action="{{ route('cart.decrease', ['album_id' => $item->album_id]) }}">
-                                                @csrf
-                                                <button type="submit">-</button>
-                                            </form>
-
-                                            <input type="number" value="{{ $item->qty ?? $item['qty'] }}"
-                                                style="height: 42px" min="1" disabled />
-
-                                            <form method="POST" style="margin :0"
-                                                action="{{ route('cart.increase', ['album_id' => $item->album_id]) }}">
-                                                @csrf
-                                                <button type="submit">+</button>
-                                            </form>
-                                        @else
-                                            <button onclick="decreaseGuest({{ $item['album_id'] }})">-</button>
-                                            <input type="number" value="{{ $item['qty'] }}" style="height: 42px"
-                                                min="1" disabled />
-                                            <button onclick="increaseGuest({{ $item['album_id'] }})">+</button>
-                                        @endif
-                                    </div> --}}
 
                                     <div class="cart-quantity" data-album-id="{{ $item->album_id ?? $item['album_id'] }}">
                                         @if (auth()->check())
@@ -91,15 +61,6 @@
                                             <button onclick="increaseGuest({{ $item['album_id'] }})">+</button>
                                         @endif
                                     </div>
-
-
-
-                                    {{-- <div class="cart-quantity" data-album-id="{{ $item->album_id }}">
-                                        <button class="qty-decrease">-</button>
-                                        <input type="number" value="{{ $item->qty }}" style="height: 42px" disabled />
-                                        <button class="qty-increase">+</button>
-                                    </div> --}}
-
 
                                 </td>
                                 <td style="color: black" class="item-subtotal">
@@ -165,11 +126,11 @@
                         <span style="color: black">0 ₫</span>
                     </div>
                     <button class="cart-btn cart-btn-full" id="checkout-btn">TIẾN HÀNH THANH TOÁN</button>
-                    <div class="cart-discount">
+                    {{-- <div class="cart-discount">
                         <p style="margin-bottom:20px">🔖 Mã ưu đãi</p>
                         <input type="text" placeholder="Nhập mã giảm giá" />
                         <button class="cart-btn cart-btn-outline">Áp dụng</button>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
@@ -239,6 +200,28 @@
                 alert('Vui lòng đăng nhập để tiến hành thanh toán!');
                 window.location.href = "{{ route('login') }}";
             @endif
+        });
+
+        function updateCheckoutVisibility() {
+            const rows = document.querySelectorAll('.cart-table tbody tr');
+            const checkoutBtn = document.getElementById('checkout-btn');
+            const isEmpty = rows.length === 1 && rows[0].textContent.includes('Giỏ hàng trống');
+
+            if (checkoutBtn) {
+                checkoutBtn.style.display = isEmpty ? 'none' : 'block';
+            }
+        }
+
+        // Gọi khi load
+        document.addEventListener('DOMContentLoaded', () => {
+            updateCheckoutVisibility();
+
+            // Sau khi nhấn tăng/giảm số lượng
+            document.querySelectorAll('.qty-increase, .qty-decrease').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    setTimeout(updateCheckoutVisibility, 400); // Delay để chờ DOM cập nhật
+                });
+            });
         });
     </script>
 
