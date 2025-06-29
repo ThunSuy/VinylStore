@@ -139,7 +139,7 @@
 
 
     <!--begin::Toast-->
-    <div id="kt_docs_toast_stack_container" class="toast-container position-fixed top-0 end-0 p-3 z-index-3"
+    {{-- <div id="kt_docs_toast_stack_container" class="toast-container position-fixed top-0 end-0 p-3 z-index-3"
         style="z-index:99999;">
         <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-kt-docs-toast="stack">
             <div class="toast-header">
@@ -154,7 +154,7 @@
             </div>
             <div class="toast-progress-bar"></div>
         </div>
-    </div>
+    </div> --}}
     <!--end::Toast-->
 
 
@@ -183,8 +183,8 @@
                     })
                     .then(res => res.json())
                     .then(data => {
-                        customNotice('icon icon-check', 'Đã thêm vào giỏ hàng!', 1);
-                        // Có thể cập nhật số lượng cart ở header nếu muốn
+                        customNotice('icon icon-clipboard', 'Đã thêm vào giỏ hàng!', 1);
+
                     });
             @else
                 // Chưa đăng nhập: lưu vào cookie như cũ

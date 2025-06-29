@@ -11,29 +11,31 @@
 
     #notice .container {
         width: 23vw;
+        height: 80px;
         position: relative;
         margin-bottom: 10px;
         background-color: orange;
-        border-radius: 0 0 15px 15px;
-        padding: 15px 50px 0px 50px;
+        border-radius: 5px;
+        padding: 25px 50px 0px 50px;
         display: flex;
         justify-content: center;
         align-items: center;
-        color: white;
+        color: rgb(10, 4, 4);
         font-size: 20px;
         animation: popup;
         animation-duration: 0.8s;
         font-family: "Dosis", sans-serif;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
         /* display: none; */
     }
 
     #notice .slide {
         position: absolute;
-        top: 0;
+        top: -7;
         left: 0;
         height: 5px;
         width: 100%;
-        background-color: #c0b69e;
+        background-color: #007219;
     }
 
     #notice .fade {

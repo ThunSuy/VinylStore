@@ -1,32 +1,46 @@
-const customNotice = async (icon, content, type) => {
-    //random number
-    let randomNumber = Math.floor(Math.random() * 1000);
+const customNotice = async (icon, content, type = 1) => {
     let alert = htmlToElement(
-        `<div class="container"><span class="slide"></span><p class="cart-removing"><i class="${icon}"></i> ${content} </p></div>`
+        `<div class="container"><span class="slide"></span><p class="toast-text"><i class="${icon}"></i> ${content} </p></div>`
     );
-    switch (type) {
-        case 1: //success
-            alert.style.backgroundColor = "#2EA043";
-            break;
-        case 2: //warning
-            alert.style.backgroundColor = "#ffb000";
-            break;
-        case 3: //error
-            alert.style.backgroundColor = "#db161d";
-            break;
-        default:
-            alert.style.backgroundColor = "rgb(162, 145, 105)";
-    }
 
     const notice = document.querySelector("#notice");
     notice.appendChild(alert);
-    notice.querySelector(".slide").classList.add("slide");
+
+    // Luôn nền trắng
+    alert.style.backgroundColor = "#ffffff";
+
+    // Lấy các phần tử để thay đổi màu
+    const slide = alert.querySelector(".slide");
+    const text = alert.querySelector(".toast-text");
+
+    // Tùy theo type
+    switch (type) {
+        case 1: // success - xanh
+            slide.style.backgroundColor = "#33c731";
+            text.style.color = "#186b16";
+            break;
+        case 2: // warning - vàng (nếu cần)
+            slide.style.backgroundColor = "#e6b800";
+            text.style.color = "#e6b800";
+            break;
+        case 3: // error - đỏ
+            slide.style.backgroundColor = "#d32f2f";
+            text.style.color = "#d32f2f";
+            break;
+        default:
+            slide.style.backgroundColor = "#888";
+            text.style.color = "#333";
+    }
+
+    // Hiệu ứng slide/fade
+    slide.classList.add("slide");
     await sleep(3000);
-    notice.querySelector(".slide").style.width = "0";
+    slide.style.width = "0";
     alert.classList.add("fade");
     await sleep(800);
     notice.removeChild(alert);
 };
+
 
 const htmlToElement = (html) => {
     var template = document.createElement("template");

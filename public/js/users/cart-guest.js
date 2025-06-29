@@ -12,7 +12,7 @@ function addToCartGuest(product) {
     }
     document.cookie = "cart=" + encodeURIComponent(JSON.stringify(cart)) + ";path=/;max-age=604800";
     // alert('Đã thêm vào giỏ hàng!');
-    customNotice('icon icon-clipboard', 'Đã thêm vào giỏ hàng!', 4);
+    customNotice('icon icon-clipboard', 'Đã thêm vào giỏ hàng!', 1);
 }
 
 function removeCartItem(album_id) {
@@ -23,7 +23,7 @@ function removeCartItem(album_id) {
     cart = cart.filter(item => item.album_id !== album_id);
     document.cookie = "cart=" + encodeURIComponent(JSON.stringify(cart)) + ";path=/;max-age=604800";
     location.reload();
-    customNotice('icon icon-clipboard', 'Đã xóa khỏi giỏ hàng!', 4);
+    customNotice('icon icon-clipboard', 'Đã xóa khỏi giỏ hàng!', 1);
 }
 
 function getGuestCart() {
@@ -63,3 +63,5 @@ function removeCartItem(albumId) {
     cart = cart.filter(item => item.album_id !== albumId);
     saveGuestCart(cart);
 }
+
+

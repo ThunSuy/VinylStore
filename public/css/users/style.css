@@ -1769,6 +1769,81 @@ img.post-image {
   transition: 0.3s width cubic-bezier(0, 0.75, 0.49, 0.99);
 }
 
+
+.card-message {
+  width: 330px;
+  height: 80px;
+  border-radius: 8px;
+  box-sizing: border-box;
+  padding: 10px 15px;
+  background-color: #ffffff;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 15px;
+}
+
+.wave-message {
+  position: absolute;
+  transform: rotate(90deg);
+  left: -31px;
+  top: 32px;
+  width: 80px;
+  fill: #04e4003a;
+}
+
+.icon-container-message {
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #04e40048;
+  border-radius: 50%;
+  margin-left: 8px;
+}
+
+.icon-message {
+  width: 17px;
+  height: 17px;
+  color: #269b24;
+}
+
+.message-text-container-message {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  flex-grow: 1;
+}
+
+.message-text-message,
+.sub-text-message {
+  margin: 0;
+  cursor: default;
+}
+
+.message-text-message {
+  color: #269b24;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.sub-text-message {
+  font-size: 14px;
+  color: #555;
+}
+
+.cross-icon-message {
+  width: 18px;
+  height: 18px;
+  color: #555;
+  cursor: pointer;
+}
+
 #header-wrap .search-button {
   order: 1;
   padding-right: 10px;

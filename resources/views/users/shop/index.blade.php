@@ -11,6 +11,7 @@
                 </ol>
             </nav>
 
+
             {{-- Sort Dropdown --}}
             <form method="get">
                 <select name="sort" class="form-select" style="width:auto;display:inline-block;"
