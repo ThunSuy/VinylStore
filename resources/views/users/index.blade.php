@@ -61,9 +61,10 @@
                                     <a href="#" class="search-button search-toggle " data-selector="#header-wrap">
                                         <i class="icon icon-search"></i>
                                     </a>
-                                    <form role="search" method="get" class="search-box">
-                                        <input class="search-field text search-input" placeholder="Search"
-                                            type="search">
+                                    <form role="search" method="get" class="search-box"
+                                        action="{{ route('shop.index') }}">
+                                        <input class="search-field text search-input" name="q"
+                                            placeholder="Bạn muốn tìm gì .." type="search" value="{{ request('q') }}">
                                     </form>
                                 </div>
 
@@ -143,11 +144,17 @@
                                         <a href="{{ url('/') }}">Trang chủ</a>
                                     </li>
 
-
-                                    {{-- item Shop --}}
-                                    <li class="menu-item {{ request()->is('shop') ? 'active' : '' }}">
+                                    <li
+                                        class="menu-item {{ request()->is('shop') && request('sort') == 'newest' ? 'active' : '' }}">
+                                        <a href="{{ route('shop.index', ['sort' => 'newest']) }}"
+                                            class="nav-link">Mới nhất</a>
+                                    </li>
+                                    <li
+                                        class="menu-item {{ request()->is('shop') && request('sort') != 'newest' ? 'active' : '' }}">
                                         <a href="{{ route('shop.index') }}" class="nav-link">Cửa hàng</a>
                                     </li>
+
+
 
 
                                     {{-- item Genres --}}
@@ -169,8 +176,8 @@
                                         </ul>
                                     </li>
 
-                                    <li class="menu-item"><a href="#featured" class="nav-link">Featured</a></li>
-                                    <li class="menu-item"><a href="#popular" class="nav-link">Popular</a></li>
+
+                                    {{-- <li class="menu-item"><a href="#popular" class="nav-link">Popular</a></li> --}}
 
 
                                     {{-- item Artists --}}

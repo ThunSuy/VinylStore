@@ -67,7 +67,7 @@ Version: 1.1
   --bs-body-color: #333;
   --bs-body-color-rgb: 51, 51, 51;
 
-  --bs-primary: #C5A992;
+  --bs-primary: #553f2d;
   --bs-primary-dark: #C5A992;
   --bs-secondary: #C5A992;
   --bs-black: #111;
@@ -1875,6 +1875,45 @@ img.post-image {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
 }
 
+/* Hiệu ứng hover cho genres ở trang chủ */
+.product-item.text-center {
+  transition: box-shadow 0.2s, transform 0.2s;
+  background: #efeee9;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.product-item.text-center:hover {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  transform: translateY(-6px) scale(1.04);
+  background: #fffbe7;
+}
+
+.product-item.text-center img {
+  transition: transform 0.3s;
+}
+
+.product-item.text-center:hover img {
+  transform: scale(1.08) rotate(-2deg);
+}
+
+/* Căn giữa và cách đều logo trong client-holder */
+.logo-wrap .grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 80px;
+  /* khoảng cách giữa các logo */
+  flex-wrap: wrap;
+}
+
+.logo-wrap .grid a img {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  display: block;
+}
+
 @keyframes headerSlideDown {
   from {
     transform: translateY(-40%);
@@ -2729,6 +2768,29 @@ footer#footer {
   -ms-border-radius: 0 !important;
   -o-border-radius: 0 !important;
   box-shadow: none;
+}
+
+.price-group {
+  display: flex;
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.price-field {
+  display: flex;
+  flex-direction: row;
+}
+
+.price-field label {
+  margin-bottom: 2px;
+  font-weight: bold;
+}
+
+.price-field input {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 150px;
 }
 
 #footer {

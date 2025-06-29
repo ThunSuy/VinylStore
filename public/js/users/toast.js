@@ -7,7 +7,7 @@ const customNotice = async (icon, content, type = 1) => {
     notice.appendChild(alert);
 
     // Luôn nền trắng
-    alert.style.backgroundColor = "#ffffff";
+    alert.style.backgroundColor = "#cdcdb2";
 
     // Lấy các phần tử để thay đổi màu
     const slide = alert.querySelector(".slide");
@@ -17,7 +17,7 @@ const customNotice = async (icon, content, type = 1) => {
     switch (type) {
         case 1: // success - xanh
             slide.style.backgroundColor = "#33c731";
-            text.style.color = "#186b16";
+            text.style.color = "#323832";
             break;
         case 2: // warning - vàng (nếu cần)
             slide.style.backgroundColor = "#e6b800";

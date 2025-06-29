@@ -140,37 +140,6 @@
 
     <script src="{{ asset('js/users/cart-guest.js') }}"></script>
 
-    <script>
-        function showMessage(type = 'success', message = 'Thành công!', subtext = '') {
-            fetch('/show-message', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                    },
-                    body: JSON.stringify({
-                        type,
-                        message,
-                        subtext
-                    })
-                })
-                .then(res => res.text())
-                .then(html => {
-                    const container = document.getElementById('message-container');
-                    const wrapper = document.createElement('div');
-                    wrapper.innerHTML = html;
-                    container.appendChild(wrapper);
-
-                    // Tự ẩn sau 4s
-                    setTimeout(() => wrapper.remove(), 4000);
-                })
-                .catch(err => {
-                    console.error('Lỗi hiển thị message:', err);
-                });
-        }
-    </script>
-
-
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
