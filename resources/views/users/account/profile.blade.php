@@ -2,24 +2,15 @@
 @extends('users.index')
 
 @section('content')
-    <form method="POST" action="{{ route('profile.update') }}" enctype="multipart/form-data">
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+    <form method="POST" action="{{ route('profile.update') }}" enctype="multipart/form-data" novalidate>
 
         <div class="profile-wrapper">
-            @if (session('success'))
-                <div class="alert alert-success">
-                    {{ session('success') }}
-                </div>
-            @endif
 
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul class="mb-0">
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
             @csrf
             <div class="profile-left">
 
@@ -39,6 +30,10 @@
                         value="{{ old('full_name', $user->full_name) }}">
                 </div>
 
+                @error('full_name')
+                    <div style="color:red; font-size:14px; margin-top:0px;">{{ $message }}</div>
+                @enderror
+
                 {{-- Email --}}
                 <div class="form-group">
                     <label class="form-label">Email</label>
@@ -56,6 +51,10 @@
                         value="{{ old('phone', $user->phone) }}">
                 </div>
 
+                @error('phone')
+                    <div style="color:red; font-size:14px; margin-top:0px;">{{ $message }}</div>
+                @enderror
+
                 {{-- Input Address  --}}
                 <div class="form-group">
                     <label for="name" class="form-label">Địa chỉ</label>
@@ -64,6 +63,10 @@
                         style="width:100%;padding:8px 10px;border:1px solid #dacaa4;border-radius:4px;"
                         value="{{ old('address', $user->address) }}">
                 </div>
+
+                @error('address')
+                    <div style="color:red; font-size:14px; margin-top:0px;">{{ $message }}</div>
+                @enderror
 
                 {{-- Btn Save  --}}
                 <button class="save-btn">Lưu</button>

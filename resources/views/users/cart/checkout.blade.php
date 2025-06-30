@@ -14,7 +14,8 @@
         </div>
 
         <!-- Main Layout -->
-        <form action="{{ route('checkout.submit') }}" method="POST" class="checkout-form" style="padding:0; margin:0">
+        <form action="{{ route('checkout.submit') }}" method="POST" class="checkout-form" style="padding:0; margin:0"
+            novalidate>
             @csrf
             <div class="cart-main">
                 <!-- Left: Billing Form -->
@@ -22,16 +23,23 @@
                     <h3><strong>THÔNG TIN THANH TOÁN</strong></h3>
                     <p style="margin:0px;color:black"><strong>Địa chỉ *</strong></p>
                     <div class="form-row">
-                        <input type="text" name="shipping_address" placeholder="Địa chỉ *" required
+                        <input type="text" name="shipping_address" placeholder="Địa chỉ *"
                             value="{{ old('shipping_address', $user->address ?? '') }}" />
 
 
                         <input type="text" name="address_extra" placeholder="Căn hộ, đơn vị (không bắt buộc)" />
                     </div>
+                    @error('shipping_address')
+                        <div style="color:red; font-size:14px; margin-top:0px;">{{ $message }}</div>
+                    @enderror
 
                     <p style="margin:0px;color:black"><strong>Số điện thoại *</strong></p>
                     <input type="text" name="phone" placeholder="Số điện thoại *"
                         value="{{ old('phone', $user->phone ?? '') }}" />
+
+                    @error('phone')
+                        <div style="color:red; font-size:14px; margin-top:0px;">{{ $message }}</div>
+                    @enderror
 
                     <p style="margin:0px;color:black"><strong>Ghi chú đơn hàng (tuỳ chọn)</strong></p>
                     <textarea name="notes" placeholder="Ghi chú đơn hàng (tuỳ chọn)"></textarea>
@@ -57,8 +65,6 @@
                                 <span>{{ number_format($item->price * $item->quantity, 0, ',', '.') }} ₫</span>
                             </div>
                         @endforeach
-
-
 
                         @php
                             $subtotal = $cart->sum(function ($item) {

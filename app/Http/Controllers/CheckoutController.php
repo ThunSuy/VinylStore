@@ -32,9 +32,13 @@ class CheckoutController extends Controller
         // Validate dữ liệu
         $request->validate([
             'shipping_address' => 'required|string|max:255',
-            'phone' => 'required|string|max:20',
             'payment_method_id' => 'required|in:1,2', // VNPAY, COD
             'notes' => 'nullable|string',
+            'phone' => ['required', 'regex:/^0\d{9}$/'],
+        ], [
+            'phone.required' => 'Vui lòng nhập số điện thoại.',
+            'phone.regex' => 'Số điện thoại không hợp lệ. Phải gồm 10 chữ số và bắt đầu bằng số 0.',
+            'shipping_address.required' => 'Vui lòng nhập địa chỉ.',
         ]);
 
         // Lấy cart của user

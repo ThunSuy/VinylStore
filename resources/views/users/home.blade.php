@@ -262,26 +262,29 @@
                     <div class="product-list" data-aos="fade-up">
                         <div class="grid product-grid">
                             @foreach ($latestAlbums as $album)
-                                <div class="product-item">
-                                    <figure class="product-style">
-                                        <a href="{{ route('albums.show', ['album_id' => $album->album_id]) }}">
+                                <a href="{{ route('albums.show', ['album_id' => $album->album_id]) }}">
+                                    <div class="product-item">
+                                        <figure class="product-style">
+
                                             <img src="{{ asset('images/albums/' . ($album->cover_image_url ?? 'default.png')) }}"
                                                 alt="{{ $album->album_name }}" class="product-item">
-                                        </a>
-                                        {{-- Nếu muốn có nút thêm vào giỏ hàng, bỏ comment dòng dưới --}}
-                                        <button type="button" class="add-to-cart" data-product-tile="add-to-cart">Thêm
-                                            vào giỏ hàng</button>
-                                    </figure>
-                                    <figcaption>
-                                        <h3>{{ $album->album_name }}</h3>
-                                        <span>{{ $album->artist_name }}</span>
-                                        <div class="item-price">{{ number_format($album->price, 0) }}đ</div>
-                                        {{-- Nếu muốn hiển thị ngày phát hành --}}
-                                        {{-- <div class="release-date text-muted" style="font-size: 0.9em;">
+
+                                            {{-- Nếu muốn có nút thêm vào giỏ hàng, bỏ comment dòng dưới --}}
+                                            <button type="button" class="add-to-cart"
+                                                data-product-tile="add-to-cart">Thêm
+                                                vào giỏ hàng</button>
+                                        </figure>
+                                        <figcaption>
+                                            <h3>{{ $album->album_name }}</h3>
+                                            <span>{{ $album->artist_name }}</span>
+                                            <div class="item-price">{{ number_format($album->price, 0) }}đ</div>
+                                            {{-- Nếu muốn hiển thị ngày phát hành --}}
+                                            {{-- <div class="release-date text-muted" style="font-size: 0.9em;">
                                         {{ \Carbon\Carbon::parse($album->release_date)->format('d/m/Y') }}
                                     </div> --}}
-                                    </figcaption>
-                                </div>
+                                        </figcaption>
+                                    </div>
+                                </a>
                             @endforeach
 
                         </div>

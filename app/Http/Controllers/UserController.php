@@ -25,10 +25,16 @@ class UserController extends Controller
 
         $request->validate([
             'full_name' => 'required|string|max:255',
-            'phone' => 'nullable|string|max:20',
-            'address' => 'nullable|string|max:255',
+            'phone' => 'required|regex:/^0\d{9}$/', // đúng 10 số, bắt đầu bằng 0
+            'address' => 'required|string|max:255',
             'avatar' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:4096',
+        ], [
+            'full_name.required' => 'Vui lòng nhập họ và tên.',
+            'phone.required' => 'Vui lòng nhập số điện thoại.',
+            'phone.regex' => 'Số điện thoại không hợp lệ. Phải gồm 10 chữ số và bắt đầu bằng số 0.',
+            'address.required' => 'Vui lòng nhập địa chỉ.',
         ]);
+
 
         $changed = false;
 

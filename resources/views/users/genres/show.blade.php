@@ -15,7 +15,7 @@
 
             {{-- Sort Dropdown --}}
             <form method="get">
-                <select name="sort" class="form-select" style="width:auto;display:inline-block;"
+                <select name="sort" class="form-select" style="width:auto;display:inline-block;width:380px"
                     onchange="this.form.submit()">
                     <option value="">Sắp xếp</option>
                     <option value="newest" {{ $sort == 'newest' ? 'selected' : '' }}>Mới nhất</option>

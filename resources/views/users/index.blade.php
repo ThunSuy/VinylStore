@@ -37,16 +37,17 @@
                         <div class="social-links">
                             <ul>
                                 <li>
-                                    <a href="#"><i class="icon icon-facebook"></i></a>
+                                    <a href="https://www.facebook.com/minhthuan.le.71619/?locale=vi_VN"><i
+                                            class="icon icon-facebook"></i></a>
                                 </li>
                                 <li>
-                                    <a href="#"><i class="icon icon-twitter"></i></a>
+                                    <a href=""><i class="icon icon-twitter"></i></a>
                                 </li>
                                 <li>
-                                    <a href="#"><i class="icon icon-youtube-play"></i></a>
+                                    <a href=""><i class="icon icon-youtube-play"></i></a>
                                 </li>
                                 <li>
-                                    <a href="#"><i class="icon icon-behance-square"></i></a>
+                                    <a href=""><i class="icon icon-behance-square"></i></a>
                                 </li>
                             </ul>
                         </div><!--social-links-->
@@ -156,7 +157,6 @@
 
 
 
-
                                     {{-- item Genres --}}
                                     <li
                                         class="menu-item has-sub {{ request()->is('genres') || request()->is('genres/*') ? 'active' : '' }}">
@@ -218,9 +218,9 @@
                     <div class="footer-item">
                         <div class="company-brand">
                             <img src="{{ asset('images/main-logo.png') }}" alt="logo" class="footer-logo">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sagittis sed ptibus liberolectus
-                                nonet psryroin. Amet sed lorem posuere sit iaculis amet, ac urna. Adipiscing fames
-                                semper erat ac in suspendisse iaculis.</p>
+                            <p>Vinyl Store – nơi âm nhạc trở lại nguyên bản. Chúng tôi mang đến những chiếc đĩa than
+                                chất lượng, để bạn không chỉ nghe, mà còn cảm nhận trọn vẹn từng thanh âm mộc mạc, chân
+                                thực như thuở ban đầu.</p>
                         </div>
                     </div>
 
@@ -229,46 +229,89 @@
                 <div class="col-md-2">
 
                     <div class="footer-menu">
-                        <h5>About Us</h5>
+                        <h5>About us</h5>
                         <ul class="menu-list">
                             <li class="menu-item">
-                                <a href="#">vision</a>
+                                <a href="">Tầm nhìn</a>
                             </li>
                             <li class="menu-item">
-                                <a href="#">articles </a>
+                                <a href="">Bài viết</a>
                             </li>
                             <li class="menu-item">
-                                <a href="#">careers</a>
+                                <a href="">Tổ chức</a>
                             </li>
                             <li class="menu-item">
-                                <a href="#">service terms</a>
+                                <a href="">Điều khoản</a>
                             </li>
                             <li class="menu-item">
-                                <a href="#">donate</a>
+                                <a href="">Quyên tặng</a>
                             </li>
                         </ul>
                     </div>
 
                 </div>
-                <div class="col-md-2">
 
+                <!-- filepath: resources/views/users/index.blade.php -->
+                <div class="col-md-2">
                     <div class="footer-menu">
-                        <h5>Discover</h5>
+                        <h5>Pages</h5>
                         <ul class="menu-list">
                             <li class="menu-item">
-                                <a href="#">Home</a>
+                                <a href="{{ url('/') }}">Trang chủ</a>
                             </li>
                             <li class="menu-item">
-                                <a href="#">Books</a>
+                                <a href="{{ route('shop.index', ['sort' => 'newest']) }}">Mới nhất</a>
                             </li>
                             <li class="menu-item">
-                                <a href="#">Authors</a>
+                                <a href="{{ route('shop.index') }}">Cửa hàng</a>
                             </li>
                             <li class="menu-item">
-                                <a href="#">Subjects</a>
+                                <a href="{{ route('genres.index') }}">Thể loại</a>
                             </li>
                             <li class="menu-item">
-                                <a href="#">Advanced Search</a>
+                                <a href="{{ route('artists.index') }}">Nghệ sĩ</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="footer-menu">
+                        <h5>My account</h5>
+                        <ul class="menu-list">
+                            <li class="menu-item">
+                                <a href="{{ route('login') }}">Đăng nhập</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="{{ url('/cart') }}">Giỏ hàng</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="{{ auth()->check() ? url('/account/profile') : route('login') }}">Hồ sơ</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="{{ auth()->check() ? url('/purchase') : route('login') }}">Đơn hàng</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                {{-- <div class="col-md-2">
+
+                    <div class="footer-menu">
+                        <h5>Pages</h5>
+                        <ul class="menu-list">
+                            <li class="menu-item">
+                                <a href="#">Trang chủ</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="#">Mới nhất</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="#">Cửa hàng</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="#">Thể loại</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="#">Nghệ sĩ</a>
                             </li>
                         </ul>
                     </div>
@@ -280,37 +323,34 @@
                         <h5>My account</h5>
                         <ul class="menu-list">
                             <li class="menu-item">
-                                <a href="#">Sign In</a>
+                                <a href="#">Đăng nhập</a>
                             </li>
                             <li class="menu-item">
-                                <a href="#">View Cart</a>
+                                <a href="#">Giỏ hàng</a>
                             </li>
+
                             <li class="menu-item">
-                                <a href="#">My Wishtlist</a>
-                            </li>
-                            <li class="menu-item">
-                                <a href="#">Track My Order</a>
+                                <a href="#">Đơn hàng</a>
                             </li>
                         </ul>
                     </div>
 
-                </div>
-                <div class="col-md-2">
+                </div> --}} <div class="col-md-2">
 
                     <div class="footer-menu">
                         <h5>Help</h5>
                         <ul class="menu-list">
                             <li class="menu-item">
-                                <a href="#">Help center</a>
+                                <a href="">Trung tâm hỗ trợ</a>
                             </li>
                             <li class="menu-item">
-                                <a href="#">Report a problem</a>
+                                <a href="">Báo cáo vấn đề</a>
                             </li>
                             <li class="menu-item">
-                                <a href="#">Suggesting edits</a>
+                                <a href="">Đề xuất chỉnh sửa</a>
                             </li>
                             <li class="menu-item">
-                                <a href="#">Contact us</a>
+                                <a href="">Liên hệ chúng tôi</a>
                             </li>
                         </ul>
                     </div>
@@ -341,16 +381,17 @@
                                 <div class="social-links align-right">
                                     <ul>
                                         <li>
-                                            <a href="#"><i class="icon icon-facebook"></i></a>
+                                            <a href="https://www.facebook.com/minhthuan.le.71619/?locale=vi_VN"><i
+                                                    class="icon icon-facebook"></i></a>
                                         </li>
                                         <li>
-                                            <a href="#"><i class="icon icon-twitter"></i></a>
+                                            <a href=""><i class="icon icon-twitter"></i></a>
                                         </li>
                                         <li>
-                                            <a href="#"><i class="icon icon-youtube-play"></i></a>
+                                            <a href=""><i class="icon icon-youtube-play"></i></a>
                                         </li>
                                         <li>
-                                            <a href="#"><i class="icon icon-behance-square"></i></a>
+                                            <a href=""><i class="icon icon-behance-square"></i></a>
                                         </li>
                                     </ul>
                                 </div>
