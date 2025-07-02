@@ -21,7 +21,34 @@
             </nav>
 
             {{-- Sort Dropdown --}}
-            <form method="get">
+
+            <form method="get" class="d-flex align-items-start justify-content-end gap-2 mb-3">
+                <div class="custom-float">
+                    <input type="number" id="price1" name="price1" class="form-control" placeholder=" "
+                        value="{{ request('price1') }}">
+                    <label for="price1">Giá từ</label>
+                </div>
+
+                <div class="custom-float">
+                    <input type="number" id="price2" name="price2" class="form-control" placeholder=" "
+                        value="{{ request('price2') }}">
+                    <label for="price2">Giá đến</label>
+                </div>
+
+                <div class="custom-float">
+                    <select name="sort" class="form-select" onchange="this.form.submit()">
+                        <option value="">Sắp xếp</option>
+                        <option value="newest" {{ $sort == 'newest' ? 'selected' : '' }}>Mới nhất</option>
+                        <option value="price_asc" {{ $sort == 'price_asc' ? 'selected' : '' }}>Giá tăng dần</option>
+                        <option value="price_desc" {{ $sort == 'price_desc' ? 'selected' : '' }}>Giá giảm dần</option>
+                    </select>
+                    <label for="sort">Sắp xếp</label>
+                </div>
+
+                <button type="submit" class="btn btn-primary"
+                    style="margin:0!important; width:60px!important; height:38px!important; border-radius:2px;!important;">Lọc</button>
+            </form>
+            {{-- <form method="get">
                 <select name="sort" class="form-select" style="width:auto;display:inline-block;"
                     onchange="this.form.submit()">
                     <option value="">Sắp xếp</option>
@@ -31,7 +58,7 @@
                     <option value="price_asc" {{ $sort == 'price_asc' ? 'selected' : '' }}>Giá tăng dần</option>
                     <option value="price_desc" {{ $sort == 'price_desc' ? 'selected' : '' }}>Giá giảm dần</option>
                 </select>
-            </form>
+            </form> --}}
         </div>
 
         {{-- Aritst Description --}}

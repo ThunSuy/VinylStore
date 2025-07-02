@@ -4,23 +4,29 @@
     <div class="container py-4">
         <div class="">
             {{-- Breadcrumb --}}
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ url('/') }}">Trang chủ</a></li>
-                    @if (empty($sort) && empty($query))
-                        <li class="breadcrumb-item active" aria-current="page">Cửa hàng</li>
-                    @else
-                        <li class="breadcrumb-item"><a href="{{ route('shop.index') }}">Cửa hàng</a></li>
-                        @if ($sort == 'newest')
-                            <li class="breadcrumb-item active" aria-current="page">Mới nhất</li>
-                        @elseif (!empty($query))
-                            <li class="breadcrumb-item active" aria-current="page">Kết quả: "{{ $query }}"</li>
-                        @endif
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ url('/') }}">Trang chủ</a></li>
+                @if (empty($sort) && empty($query))
+                    <li class="breadcrumb-item active" aria-current="page">Cửa hàng</li>
+                @else
+                    <li class="breadcrumb-item"><a href="{{ route('shop.index') }}">Cửa hàng</a></li>
+                    @if ($sort == 'newest')
+                        <li class="breadcrumb-item active" aria-current="page">
+                            Mới nhất
+                            @if (!empty($query))
+                                / Kết quả: "{{ $query }}"
+                            @endif
+                        </li>
+                    @elseif (!empty($query))
+                        <li class="breadcrumb-item active" aria-current="page">Kết quả: "{{ $query }}"</li>
                     @endif
-                </ol>
-            </nav>
+                @endif
+            </ol>
 
             <form method="get" class="d-flex align-items-start justify-content-end gap-2 mb-3">
+                @if (request('q'))
+                    <input type="hidden" name="q" value="{{ request('q') }}">
+                @endif
                 <div class="custom-float">
                     <input type="number" id="price1" name="price1" class="form-control" placeholder=" "
                         value="{{ request('price1') }}">
@@ -37,6 +43,7 @@
                     <select name="sort" class="form-select" onchange="this.form.submit()">
                         <option value="">Sắp xếp</option>
                         <option value="newest" {{ $sort == 'newest' ? 'selected' : '' }}>Mới nhất</option>
+                        {{-- <option value="popular" {{ $sort == 'popular' ? 'selected' : '' }}>Phổ biến nhất</option> --}}
                         <option value="price_asc" {{ $sort == 'price_asc' ? 'selected' : '' }}>Giá tăng dần</option>
                         <option value="price_desc" {{ $sort == 'price_desc' ? 'selected' : '' }}>Giá giảm dần</option>
                     </select>
@@ -102,7 +109,7 @@
         </div>
     </div>
 
-    <style>
+    {{-- <style>
         .custom-float {
             position: relative;
             width: 150px;
@@ -156,7 +163,7 @@
         .custom-float select:invalid {
             color: gray;
         }
-    </style>
+    </style> --}}
 
 
 @endsection

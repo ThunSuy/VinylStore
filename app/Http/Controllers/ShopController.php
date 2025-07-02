@@ -46,6 +46,12 @@ class ShopController extends Controller
         }
 
         $sort = $request->get('sort');
+        // if ($sort == 'popular') {
+        //     $albums->leftJoin('orderitems', 'albums.album_id', '=', 'orderitems.album_id')
+        //         ->selectRaw('albums.*, COUNT(orderitems.order_item_id) as sold_count')
+        //         ->groupBy('albums.album_id')
+        //         ->orderByDesc('sold_count');
+        // } else
         if ($sort == 'newest') {
             $albums = $albums->orderByDesc('albums.release_date');
         } elseif ($sort == 'price_asc') {

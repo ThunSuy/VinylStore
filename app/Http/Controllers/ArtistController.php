@@ -36,29 +36,30 @@ class ArtistController extends Controller
 
         $description = $artist->description;
 
-        $albums = DB::table('albums')
+
+        $albumsQuery = DB::table('albums')
             ->where('artist_id', $artist->artist_id)
             ->leftJoin('album_discounts', 'albums.album_id', '=', 'album_discounts.album_id')
             ->leftJoin('discounts', 'album_discounts.discount_id', '=', 'discounts.discount_id')
-            ->select('albums.*', 'discounts.discount_value', 'discounts.discount_type')
-            ->get();
+            ->select('albums.*', 'discounts.discount_value', 'discounts.discount_type');
+
+        if ($request->filled('price1')) {
+            $albumsQuery->where('albums.price', '>=', $request->input('price1'));
+        }
+        if ($request->filled('price2')) {
+            $albumsQuery->where('albums.price', '<=', $request->input('price2'));
+        }
 
         $sort = $request->get('sort');
         if ($sort == 'newest') {
-            $albums = $albums->sortByDesc('album_id');
-        } elseif ($sort == 'popular') {
-            // Cần thêm trường phổ biến nếu có
-        } elseif ($sort == 'rating') {
-            // Cần thêm trường đánh giá nếu có
+            $albumsQuery->orderByDesc('albums.release_date');
         } elseif ($sort == 'price_asc') {
-            $albums = $albums->sortBy(function ($a) {
-                return $a->price;
-            });
+            $albumsQuery->orderBy('albums.price');
         } elseif ($sort == 'price_desc') {
-            $albums = $albums->sortByDesc(function ($a) {
-                return $a->price;
-            });
+            $albumsQuery->orderByDesc('albums.price');
         }
+
+        $albums = $albumsQuery->get();
 
         return view('users.artists.show', compact('artist', 'description', 'albums', 'sort', 'genres'));
     }
