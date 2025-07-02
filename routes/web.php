@@ -79,3 +79,12 @@ Route::get('/checkout/result', [CheckoutController::class, 'paymentResult'])->na
 
 // Payment
 Route::get('/vnpay/return', [\App\Http\Controllers\CheckoutController::class, 'vnpayReturn'])->name('vnpay.return');
+
+// Message
+Route::post('/show-message', function (Illuminate\Http\Request $request) {
+    return view('components.message', [
+        'type' => $request->type,
+        'message' => $request->message,
+        'subtext' => $request->subtext,
+    ])->render();
+});

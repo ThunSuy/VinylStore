@@ -11,6 +11,7 @@
     <meta name="author" content="">
     <meta name="keywords" content="">
     <meta name="description" content="">
+    <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
@@ -65,7 +66,8 @@
                                     <form role="search" method="get" class="search-box"
                                         action="{{ route('shop.index') }}">
                                         <input class="search-field text search-input" name="q"
-                                            placeholder="Bạn muốn tìm gì .." type="search" value="{{ request('q') }}">
+                                            placeholder="Bạn muốn tìm gì .." type="search"
+                                            value="{{ request('q') }}">
                                     </form>
                                 </div>
 
@@ -371,13 +373,23 @@
                     <div class="copyright">
                         <div class="row">
 
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <p>© 2022 All rights reserved. Free HTML Template by <a
                                         href="https://www.templatesjungle.com/" target="_blank">TemplatesJungle</a>
                                 </p>
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-4">
+                                <p class="text-danger">
+                                    Sản phẩm này tạo ra nhằm mục đích học tập. Có vấn đề gì xin vui lòng liên hệ:
+                                    <a href="mailto:leminhthuannn123@gmail.com"
+                                        class="text-danger text-decoration-underline">leminhthuannn123@gmail.com</a>
+                                </p>
+
+                            </div>
+
+
+                            <div class="col-md-4">
                                 <div class="social-links align-right">
                                     <ul>
                                         <li>

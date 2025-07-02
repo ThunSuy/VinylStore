@@ -58,7 +58,7 @@
                                         @else
                                             {{-- Chưa đăng nhập – xử lý qua localStorage + cookie --}}
                                             <button onclick="decreaseGuest({{ $item['album_id'] }})">-</button>
-                                            <input type="number" id="qty-{{ $item['album_id'] }}"
+                                            <input type="number" id="qty-{{ $item['album_id'] }}" style="height: 42px"
                                                 value="{{ $item['qty'] }}" disabled />
                                             <button onclick="increaseGuest({{ $item['album_id'] }})">+</button>
                                         @endif
@@ -140,6 +140,15 @@
 
     <script src="{{ asset('js/users/cart-guest.js') }}"></script>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const url = new URL(window.location.href);
+            if (url.searchParams.get('r') === '1') {
+                location.href = url.pathname; // reload sạch query
+            }
+        });
+    </script>
+
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -184,6 +193,8 @@
                             const subtotalCell = parent.closest('tr').querySelectorAll('td')[3];
                             subtotalCell.textContent = (price * data.new_qty).toLocaleString() + ' ₫';
                         }
+                        window.calculateSubtotalAndTotal();
+
                     })
                     .catch(err => {
                         console.error('Lỗi:', err);
@@ -223,7 +234,7 @@
             // Sau khi nhấn tăng/giảm số lượng
             document.querySelectorAll('.qty-increase, .qty-decrease').forEach(btn => {
                 btn.addEventListener('click', () => {
-                    setTimeout(updateCheckoutVisibility, 400); // Delay để chờ DOM cập nhật
+                    setTimeout(updateCheckoutVisibility, 200); // Delay để chờ DOM cập nhật
                 });
             });
         });
@@ -259,22 +270,23 @@
                 const totalCell = document.querySelector('.cart-total span:last-child');
                 if (totalCell) totalCell.textContent = formatPrice(total);
             }
+            window.calculateSubtotalAndTotal = calculateSubtotalAndTotal;
 
 
             // Gọi khi load
-            calculateSubtotalAndTotal();
+            window.calculateSubtotalAndTotal();
 
             // Gọi lại khi có cập nhật từ nút + -
             document.querySelectorAll('.qty-increase, .qty-decrease').forEach(btn => {
                 btn.addEventListener('click', () => {
-                    setTimeout(calculateSubtotalAndTotal,
-                        300); // delay nhỏ để đợi fetch cập nhật DOM
+                    setTimeout(window.calculateSubtotalAndTotal(),
+                        100); // delay nhỏ để đợi fetch cập nhật DOM
                 });
             });
 
             // Khi đổi phương thức giao hàng, tính lại tổng
             document.querySelectorAll('input[name="shipping_method"]').forEach(radio => {
-                radio.addEventListener('change', calculateSubtotalAndTotal);
+                radio.addEventListener('change', window.calculateSubtotalAndTotal());
             });
 
         });

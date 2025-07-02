@@ -1,0 +1,10 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Chuyển hướng tất cả các request đến thư mục public
+    RewriteRule ^(.*)$ public/$1 [L]
+
+    # Xử lý trường hợp truy cập root URL ("/")
+    RewriteCond %{REQUEST_URI} ^/$
+    RewriteRule ^(.*)$ public/index.php [L]
+</IfModule>
