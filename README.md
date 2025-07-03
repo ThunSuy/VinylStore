@@ -17,9 +17,7 @@ A full-stack Laravel-based e-commerce website that allows users to stream music,
 - **Payment Gateway:** VNPay
 - **OAuth:** Google OAuth2
 
-## 📸 Screenshots
 
-_(Screenshots here if available)_
 
 ## 🔗 Links
 
