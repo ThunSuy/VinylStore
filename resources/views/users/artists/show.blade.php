@@ -3,11 +3,11 @@
 @section('content')
     <div class="container py-4">
 
-        <div class="d-flex justify-content-between align-items-center">
+        <div class="">
 
             {{-- Breadcrumb --}}
-            <nav aria-label="breadcrumb" class="">
-                <ol class="breadcrumb">
+            <nav aria-label="breadcrumb" class="mb-3">
+                <ol class="breadcrumb fw-bold">
                     <li class="breadcrumb-item">
                         <a href="{{ url('/') }}">Trang chủ</a>
                     </li>

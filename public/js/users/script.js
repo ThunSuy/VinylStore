@@ -111,18 +111,48 @@
     //   });
     // });
 
-    window.addEventListener('scroll', function () {
+    function handleHeaderScroll() {
       const header = document.getElementById('header-wrap');
-      if (window.scrollY > 250) {
+      const isMobile = window.innerWidth <= 768;
+
+      if (!isMobile && window.scrollY > 250) {
         header.classList.add('header-fixed');
       } else {
         header.classList.remove('header-fixed');
       }
-    });
+    }
+
+    // Lắng nghe sự kiện cuộn và thay đổi kích thước
+    window.addEventListener('scroll', handleHeaderScroll);
+    window.addEventListener('resize', handleHeaderScroll);
+
+    // Gọi luôn khi trang vừa load để đảm bảo trạng thái đúng
+    window.addEventListener('DOMContentLoaded', handleHeaderScroll);
 
     function updateCartCountDisplay(count) {
       document.getElementById('cart-count-span').innerText = 'Giỏ hàng:(' + count + ')';
     }
+
+
+    //Back to top button
+    const backToTopBtn = document.getElementById('back-to-top');
+
+    function toggleBackToTop() {
+      const isMobile = window.innerWidth <= 768;
+      if (isMobile && window.scrollY > 300) {
+        backToTopBtn.style.display = 'flex';
+      } else {
+        backToTopBtn.style.display = 'none';
+      }
+    }
+
+    window.addEventListener('scroll', toggleBackToTop);
+    window.addEventListener('resize', toggleBackToTop);
+    document.addEventListener('DOMContentLoaded', toggleBackToTop);
+
+    backToTopBtn.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
 
     // // Select elements
     // const button = document.getElementById('kt_docs_toast_stack_button');

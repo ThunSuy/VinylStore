@@ -15,6 +15,7 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="{{ asset('css/users/normalize.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('icomoon/icomoon.css') }}">
@@ -131,7 +132,8 @@
 
                     <div class="col-md-2">
                         <div class="main-logo">
-                            <a href="/index"><img src="{{ asset('images/main-logo.png') }}" alt="logo"></a>
+                            <a href="/index"><img class="img-fluid" src="{{ asset('images/main-logo.png') }}"
+                                    alt="logo"></a>
                         </div>
 
                     </div>
@@ -416,6 +418,14 @@
             </div>
         </div>
     </div>
+
+    <button id="back-to-top"
+        class="btn btn-dark rounded-circle shadow d-flex justify-content-center align-items-center"
+        style="width: 45px; height: 45px; position: fixed; bottom: 20px; right: 20px; display: none; z-index: 999;"
+        title="Lên đầu trang">
+        <i class="bi bi-chevron-up"></i>
+    </button>
+
 
     <script src="{{ asset('js/users/jquery-1.11.0.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"

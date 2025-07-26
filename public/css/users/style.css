@@ -1908,8 +1908,8 @@ img.post-image {
 }
 
 .logo-wrap .grid a img {
-  width: 90px;
-  height: 90px;
+  /* width: 90px;
+  height: 90px; */
   object-fit: contain;
   display: block;
 }
@@ -2856,6 +2856,7 @@ footer#footer {
   background-color: #f3f2ec;
   background: #eeebe4;
 }
+
 
 
 

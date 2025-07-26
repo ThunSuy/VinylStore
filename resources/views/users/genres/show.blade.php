@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container py-4">
-        <div class="d-flex justify-content-between align-items-center">
+        <div class="">
 
             {{-- Breadcrumb --}}
             <nav aria-label="breadcrumb">
