@@ -9,10 +9,11 @@
     @endif
     <form method="POST" action="{{ route('profile.update') }}" enctype="multipart/form-data" novalidate>
 
-        <div class="profile-wrapper">
+        <div class="profile-wrapper d-flex flex-column flex-md-row gap-4 align-items-center align-items-md-start">
+
 
             @csrf
-            <div class="profile-left">
+            <div class="profile-left w-100">
 
                 {{-- Title  --}}
                 <div class="profile-header">Hồ Sơ Của Tôi</div>
@@ -68,12 +69,12 @@
                     <div style="color:red; font-size:14px; margin-top:0px;">{{ $message }}</div>
                 @enderror
 
-                {{-- Btn Save  --}}
-                <button class="save-btn">Lưu</button>
+
 
 
             </div>
-            <div class="profile-right">
+            <div class="profile-right text-center text-md-start w-100">
+
 
                 {{-- Avatar  --}}
                 <div class="avatar-placeholder">
@@ -81,11 +82,6 @@
                         style="width:100%;height:100%;border-radius:50%;object-fit:cover;object-position:center;"
                         id="avatarImg">
                 </div>
-                {{-- <div class="avatar-placeholder">
-                    <img src="{{ $user->avatar_url }}" alt="avatar"
-                        style="width:100%;height:100%;border-radius:50%; ;object-fit:cover;object-position:center;"
-                        id="avatarImg">
-                </div> --}}
 
                 {{-- Btn change avt --}}
                 <label class="avatar-upload-btn" style="border:1px solid #dacaa4;">
@@ -100,6 +96,8 @@
 
 
             </div>
+            {{-- Btn Save  --}}
+            <button class="save-btn d-block mx-auto mx-md-0">Lưu</button>
 
         </div>
     </form>

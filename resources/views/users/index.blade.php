@@ -132,8 +132,8 @@
 
                     <div class="col-md-2">
                         <div class="main-logo">
-                            <a href="/index"><img class="img-fluid" src="{{ asset('images/main-logo.png') }}"
-                                    alt="logo"></a>
+                            <a href="/index"><img class="img-fluid d-block"
+                                    src="{{ asset('images/main-logo.png') }}" alt="logo"></a>
                         </div>
 
                     </div>

@@ -4,9 +4,14 @@ body {
 }
 
 .purchase-container {
-    width: 60%;
+    width: 90%;
     margin: 0 auto;
-    padding: 20px;
+}
+
+@media (min-width: 992px) {
+    .purchase-container {
+        width: 60%;
+    }
 }
 
 .purchase-search-bar {

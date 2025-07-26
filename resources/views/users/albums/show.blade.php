@@ -95,7 +95,7 @@
         <h3 class="fw-bold text-uppercase mt-5 mb-4 pt-5">Sản phẩm tương tự</h3>
         <div class="row product-slider">
             @foreach ($related as $item)
-                <div class="col-md-3">
+                <div class="col-md-3 col-6">
                     <a href="{{ route('albums.show', ['album_id' => $item->album_id]) }}"
                         class="text-decoration-none text-dark">
                         <div class="product-item">
@@ -114,7 +114,7 @@
                 @endif --}}
                             </figure>
                             <figcaption>
-                                <h3>{{ $item->artist_name }} – {{ $item->album_name }} – Đĩa Than</h3>
+                                <h3>{{ $item->album_name }} – Đĩa Than</h3>
                                 <span>{{ $item->artist_name }}</span>
                                 <div class="item-price">
                                     @if ($item->discount_value)

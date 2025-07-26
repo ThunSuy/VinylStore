@@ -17,9 +17,9 @@
         <form action="{{ route('checkout.submit') }}" method="POST" class="checkout-form" style="padding:0; margin:0"
             novalidate>
             @csrf
-            <div class="cart-main">
+            <div class="d-flex flex-column flex-lg-row cart-main gap-4 ">
                 <!-- Left: Billing Form -->
-                <div class="cart-left" style="width: 60%;">
+                <div class="cart-left w-100 w-lg-70">
                     <h3><strong>THÔNG TIN THANH TOÁN</strong></h3>
                     <p style="margin:0px;color:black"><strong>Địa chỉ *</strong></p>
                     <div class="form-row">
@@ -46,7 +46,7 @@
                 </div>
 
                 <!-- Right: Order Summary -->
-                <div class="cart-right" style="width: 40%;">
+                <div class="cart-right w-100 w-lg-30">
                     <div class="cart-summary">
                         <h3><strong>ĐƠN HÀNG CỦA BẠN</strong></h3>
                         <div class="summary-item">

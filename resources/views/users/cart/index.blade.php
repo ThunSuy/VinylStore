@@ -17,9 +17,9 @@
         </div>
 
         <!-- Main Cart Layout -->
-        <div class="cart-main">
+        <div class="d-flex flex-column flex-lg-row cart-main gap-4 ">
             <!-- Cart Table -->
-            <div class="cart-left">
+            <div class="cart-left w-100 w-lg-70">
                 <table class="cart-table">
                     <thead>
                         <tr>
@@ -93,13 +93,11 @@
 
                 </table>
 
-                <div class="cart-buttons">
-                    <button class="cart-btn cart-btn-outline" onclick="history.back()">← TRỞ VỀ TRANG TRƯỚC ĐÓ</button>
-                </div>
+
             </div>
 
             <!-- Cart Summary -->
-            <div class="cart-right">
+            <div class="cart-right w-100 w-lg-30">
                 <div class="cart-summary">
                     <h3>TỔNG CỘNG GIỎ HÀNG</h3>
                     <div class="cart-summary-item">
@@ -135,6 +133,9 @@
                     </div> --}}
                 </div>
             </div>
+        </div>
+        <div class="cart-buttons">
+            <button class="cart-btn cart-btn-outline" onclick="history.back()">← TRỞ VỀ TRANG TRƯỚC ĐÓ</button>
         </div>
     </div>
 

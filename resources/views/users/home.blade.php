@@ -50,19 +50,26 @@
             <div class="row">
                 <div class="inner-content">
                     <div class="logo-wrap">
-                        <div class="grid">
-                            <a href="#"><img src="images/ui/cd.png" alt="client"></a>
-                            <a href="#"><img src="images/ui/guitar.png" alt="client"></a>
-                            <a href="#"><img src="images/ui/vinyl_1.png" alt="client"></a>
-                            <a href="#"><img src="images/ui/vinyls.png" alt="client"></a>
-                            <a href="#"><img src="images/ui/dvd-player.png" alt="client"></a>
-
+                        <div class="row text-center">
+                            <div class="col-3">
+                                <a href="#"><img src="images/ui/cd.png" alt="client" class="img-fluid"></a>
+                            </div>
+                            <div class="col-3">
+                                <a href="#"><img src="images/ui/guitar.png" alt="client" class="img-fluid"></a>
+                            </div>
+                            <div class="col-3">
+                                <a href="#"><img src="images/ui/vinyl_1.png" alt="client" class="img-fluid"></a>
+                            </div>
+                            <div class="col-3">
+                                <a href="#"><img src="images/ui/dvd-player.png" alt="client" class="img-fluid"></a>
+                            </div>
                         </div>
-                    </div><!--image-holder-->
+                    </div>
                 </div>
             </div>
         </div>
     </section>
+
 
     <section id="featured" class="py-5 my-5">
         <div class="container">
@@ -79,7 +86,7 @@
                     <div class="product-list" data-aos="fade-up">
                         <div class="row">
                             @foreach ($featuredGenres as $genre)
-                                <div class="col-md-3">
+                                <div class="col-md-3 col-6">
                                     <div class="product-item text-center">
                                         <figure class="product-style">
                                             <a href="{{ url('/genres/' . $genre->slug) }}">
@@ -204,14 +211,14 @@
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-6 mx-auto">
                             <figure class="products-thumb">
                                 <img src="{{ asset('images/albums/' . ($bestSeller->cover_image_url ?? 'default.png')) }}"
                                     alt="{{ $bestSeller->album_name }}" class="single-image">
                             </figure>
                         </div>
-                        <div class="col-md-6">
-                            <div class="product-entry">
+                        <div class="col-md-6 ">
+                            <div class="product-entry ">
                                 <h2 class="section-title divider">Best Selling Album</h2>
                                 <div class="products-content">
                                     <div class="author-name">By {{ $bestSeller->artist_name }}</div>

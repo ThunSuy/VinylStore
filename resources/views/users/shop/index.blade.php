@@ -59,7 +59,7 @@
         {{-- Albums List --}}
         <div class="row">
             @foreach ($albums as $album)
-                <div class="col-md-3">
+                <div class="col-md-3 col-6">
                     <a href="{{ route('albums.show', ['album_id' => $album->album_id]) }}"
                         class="text-decoration-none text-dark">
                         <div class="product-item">

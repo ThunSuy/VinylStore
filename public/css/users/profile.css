@@ -1,13 +1,13 @@
 .profile-wrapper {
     display: flex;
     gap: 40px;
-    max-width: 900px;
+    max-width: 800px;
     margin: 40px auto;
     background: #f3f2ed;
     border: 4px solid #eeebe4;
     border-radius: 12px;
     box-shadow: 0 2px 16px rgba(0, 0, 0, 0.15);
-    padding: 32px 0px 32px 50px;
+    padding: 32px 0px 32px 20px;
     flex-wrap: wrap;
 }
 
@@ -81,7 +81,7 @@
 }
 
 .save-btn {
-    width: 100%;
+    width: 50%;
     background: #7e6b40;
     color: #fff;
     border: none;
@@ -89,7 +89,7 @@
     padding: 12px 0;
     font-size: 1.1rem;
     font-weight: 600;
-    margin-top: 24px;
+    /* margin-top: 24px; */
     cursor: pointer;
     transition: background 0.2s;
 }

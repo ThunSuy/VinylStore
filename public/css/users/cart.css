@@ -1,7 +1,7 @@
 /* Container */
 .cart-container {
     /* font-family: Arial, sans-serif; */
-    padding: 40px 60px;
+    /* padding: 40px 60px; */
     background: #f3f2ed;
 }
 
@@ -30,15 +30,16 @@
 .cart-main {
     display: flex;
     gap: 30px;
+    margin: 10px;
 }
 
-.cart-left {
+/* .cart-left {
     width: 70%;
 }
 
 .cart-right {
     width: 30%;
-}
+} */
 
 /* Table */
 .cart-table {
@@ -101,7 +102,7 @@
 
 /* Buttons */
 .cart-buttons {
-    margin-top: 20px;
+    margin-left: 10px;
     display: flex;
     justify-content: space-between;
 }

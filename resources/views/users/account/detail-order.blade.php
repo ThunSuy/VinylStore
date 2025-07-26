@@ -2,9 +2,11 @@
 
 @section('content')
     <div class="cart-container">
-        <div class="cart-main" style="margin:0 auto;display: flex; justify-content: center;">
+        <div class="cart-main d-flex flex-column flex-lg-row justify-content-center" style="margin: 0 auto;">
+
             <!-- Left: Order Info -->
-            <div class="cart-left" style="width: 40%;">
+            <div class="cart-left w-100 w-lg-40 p-4">
+
                 <h3><strong>THÔNG TIN ĐƠN HÀNG</strong></h3>
 
                 <p><strong>Mã đơn hàng:</strong> OD{{ str_pad($order->order_id, 5, '0', STR_PAD_LEFT) }}</p>
@@ -45,7 +47,8 @@
             </div>
 
             <!-- Right: Order Items -->
-            <div class="cart-right" style="width: 50%;">
+            <div class="cart-right w-100 w-lg-50 p-4">
+
                 <div class="cart-summary">
                     <h3><strong>SẢN PHẨM</strong></h3>
 
