@@ -4,7 +4,7 @@
     <!-- From Uiverse.io by Yaya12085 -->
     <div class="cart-container">
         <!-- Breadcrumb -->
-        <div class="cart-breadcrumb-container">
+        <div class="cart-breadcrumb-container p-4">
             <div class="cart-breadcrumb">
                 <span class="cart-breadcrumb-item">GIỎ HÀNG</span>
                 <span class="cart-breadcrumb-arrow">›</span>

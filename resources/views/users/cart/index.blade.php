@@ -6,7 +6,7 @@
         <div id="message-container" style="position: fixed; top: 20px; right: 20px; z-index: 9999;"></div>
 
         <!-- Breadcrumb -->
-        <div class="cart-breadcrumb-container">
+        <div class="cart-breadcrumb-container p-4">
             <div class="cart-breadcrumb">
                 <span class="cart-breadcrumb-item cart-active">GIỎ HÀNG</span>
                 <span class="cart-breadcrumb-arrow">›</span>
@@ -287,7 +287,7 @@
 
             // Khi đổi phương thức giao hàng, tính lại tổng
             document.querySelectorAll('input[name="shipping_method"]').forEach(radio => {
-                radio.addEventListener('change', window.calculateSubtotalAndTotal());
+                radio.addEventListener('change', window.calculateSubtotalAndTotal);
             });
 
         });
