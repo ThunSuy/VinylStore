@@ -3,6 +3,7 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
+  margin-top: 20px;
 }
 
 .login-box {
@@ -71,9 +72,10 @@
 
 .login-submit {
   padding: 10px;
-  background-color: #1DB954;
-  color: white;
+  background-color: #c5c2b1;
+  color: black;
   font-weight: bold;
+  font-size: 13px;
   border: none;
   border-radius: 20px;
   cursor: pointer;
@@ -81,7 +83,8 @@
 }
 
 .login-submit:hover {
-  background-color: #1ed760;
+  background-color: #000000;
+  color: white;
 }
 
 .login-signup {

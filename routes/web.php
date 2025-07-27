@@ -4,6 +4,7 @@ use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\ArtistController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\GeminiController;
 use App\Http\Controllers\GenreController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -88,3 +89,6 @@ Route::post('/show-message', function (Illuminate\Http\Request $request) {
         'subtext' => $request->subtext,
     ])->render();
 });
+
+
+Route::post('/chat/send', [GeminiController::class, 'sendMessage'])->name('chat.send');

@@ -426,6 +426,146 @@
         <i class="bi bi-chevron-up"></i>
     </button>
 
+    <div id="chat-bubble" class="position-fixed top-50 end-0 translate-middle-y p-3" style="z-index: 2000;">
+        <!-- Nút mở chat -->
+        <button id="chat-toggle" class="btn btn-dark rounded-circle shadow" style="width: 45px; height: 45px;">
+            💬
+        </button>
+
+        <!-- Khung chat -->
+        <div id="chat-box" class="card d-none shadow mt-3" style="width: 350px; max-height: 450px;">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <strong>Trợ lý ảo</strong>
+                <button type="button" class="btn-close" id="chat-close-btn"></button>
+            </div>
+
+            <div id="chat-scroll" class="card-body overflow-auto" style="height: 350px;">
+                <ul class="list-unstyled" id="chat-messages">
+                    <li class="d-flex justify-content-start mb-3">
+                        <div class="card bg-light">
+                            <div class="card-body p-2">
+                                <p class="mb-0">Xin chào! Bạn cần hỗ trợ gì?</p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="card-footer bg-white">
+                <div class="input-group">
+                    <textarea id="chat-input" class="form-control" placeholder="Nhập tin nhắn..." rows="1"></textarea>
+                    <button id="chat-send" class="btn btn-primary"
+                        style="margin: 0; height:37px; border-radius:0 5px 5px 0;">Gửi</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const chatToggle = document.getElementById('chat-toggle');
+            const chatBox = document.getElementById('chat-box');
+            const chatClose = document.getElementById('chat-close-btn');
+            const sendBtn = document.getElementById('chat-send');
+            const chatInput = document.getElementById('chat-input');
+            const chatMessages = document.getElementById('chat-messages');
+            const chatScroll = document.getElementById('chat-scroll');
+
+            // Mở chat
+            chatToggle.addEventListener('click', () => {
+                chatBox.classList.remove('d-none');
+                chatBox.classList.add('show');
+                chatToggle.classList.add('d-none');
+            });
+
+            // Đóng chat
+            chatClose.addEventListener('click', () => {
+                chatBox.classList.remove('show');
+                setTimeout(() => {
+                    chatBox.classList.add('d-none');
+                    chatToggle.classList.remove('d-none');
+                }, 300); // Khớp với thời gian transition
+            });
+
+            function scrollToBottom() {
+                chatScroll.scrollTop = chatScroll.scrollHeight;
+            }
+
+            sendBtn.addEventListener('click', sendMessage);
+            chatInput.addEventListener('keydown', e => {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    sendMessage();
+                }
+            });
+
+            function sendMessage() {
+                const message = chatInput.value.trim();
+                if (!message) return;
+
+                // Thêm tin nhắn người dùng
+                const userMsg = document.createElement('li');
+                userMsg.className = 'd-flex justify-content-end mb-3';
+                userMsg.innerHTML = `
+                <div class="card bg-primary text-white">
+                    <div class="card-body p-2">
+                        <p class="mb-0">${message}</p>
+                    </div>
+                </div>
+            `;
+                chatMessages.appendChild(userMsg);
+                scrollToBottom();
+                chatInput.value = '';
+
+                // Gửi tới server
+                fetch("{{ route('chat.send') }}", {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        },
+                        body: JSON.stringify({
+                            message
+                        })
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                        const reply = data.reply || 'Không có phản hồi từ AI.';
+                        const botMsg = document.createElement('li');
+                        botMsg.className = 'd-flex justify-content-start mb-3';
+                        botMsg.innerHTML = `
+                    <div class="card bg-light">
+                        <div class="card-body p-2">
+                            <p class="mb-0">${reply}</p>
+                        </div>
+                    </div>
+                `;
+                        chatMessages.appendChild(botMsg);
+                        scrollToBottom();
+                    })
+                    .catch(error => {
+                        console.error('Lỗi:', error);
+                    });
+            }
+        });
+    </script>
+
+    <style>
+        #chat-box {
+            transition: all 0.3s ease-in-out;
+            opacity: 0;
+            transform: scale(0.95);
+        }
+
+        #chat-box.show {
+            opacity: 1;
+            transform: scale(1);
+        }
+    </style>
+
+
+
+
 
     <script src="{{ asset('js/users/jquery-1.11.0.min.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
