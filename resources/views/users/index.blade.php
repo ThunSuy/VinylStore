@@ -476,6 +476,7 @@
                 chatBox.classList.remove('d-none');
                 chatBox.classList.add('show');
                 chatToggle.classList.add('d-none');
+                loadChatHistory();
             });
 
             // Đóng chat
@@ -486,6 +487,36 @@
                     chatToggle.classList.remove('d-none');
                 }, 300); // Khớp với thời gian transition
             });
+
+            function loadChatHistory() {
+                const history = JSON.parse(localStorage.getItem('chatHistory')) || [];
+                history.forEach(item => {
+                    const li = document.createElement('li');
+                    li.className = item.sender === 'user' ? 'd-flex justify-content-end mb-3' :
+                        'd-flex justify-content-start mb-3';
+                    li.innerHTML = `
+                    <div class="card ${item.sender === 'user' ? 'bg-primary text-white' : 'bg-light'}">
+                        <div class="card-body p-2">
+                            <p class="mb-0">${item.message}</p>
+                        </div>
+                    </div>
+                `;
+                    chatMessages.appendChild(li);
+                });
+                scrollToBottom();
+            }
+
+            // ====== Lưu tin nhắn mới vào localStorage
+            function saveMessage(sender, message) {
+                const history = JSON.parse(localStorage.getItem('chatHistory')) || [];
+                history.push({
+                    sender,
+                    message
+                });
+                localStorage.setItem('chatHistory', JSON.stringify(history));
+            }
+
+
 
             function scrollToBottom() {
                 chatScroll.scrollTop = chatScroll.scrollHeight;
@@ -503,7 +534,7 @@
                 const message = chatInput.value.trim();
                 if (!message) return;
 
-                // Thêm tin nhắn người dùng
+                // Gửi: hiển thị + lưu
                 const userMsg = document.createElement('li');
                 userMsg.className = 'd-flex justify-content-end mb-3';
                 userMsg.innerHTML = `
@@ -515,9 +546,10 @@
             `;
                 chatMessages.appendChild(userMsg);
                 scrollToBottom();
+                saveMessage('user', message);
                 chatInput.value = '';
 
-                // Gửi tới server
+                // Gọi API Gemini
                 fetch("{{ route('chat.send') }}", {
                         method: 'POST',
                         headers: {
@@ -534,19 +566,69 @@
                         const botMsg = document.createElement('li');
                         botMsg.className = 'd-flex justify-content-start mb-3';
                         botMsg.innerHTML = `
-                    <div class="card bg-light">
-                        <div class="card-body p-2">
-                            <p class="mb-0">${reply}</p>
+                        <div class="card bg-light">
+                            <div class="card-body p-2">
+                                <p class="mb-0">${reply}</p>
+                            </div>
                         </div>
-                    </div>
-                `;
+                    `;
                         chatMessages.appendChild(botMsg);
                         scrollToBottom();
+                        saveMessage('bot', reply);
                     })
                     .catch(error => {
                         console.error('Lỗi:', error);
                     });
             }
+
+            // function sendMessage() {
+            //     const message = chatInput.value.trim();
+            //     if (!message) return;
+
+            //     // Thêm tin nhắn người dùng
+            //     const userMsg = document.createElement('li');
+            //     userMsg.className = 'd-flex justify-content-end mb-3';
+            //     userMsg.innerHTML = `
+        //     <div class="card bg-primary text-white">
+        //         <div class="card-body p-2">
+        //             <p class="mb-0">${message}</p>
+        //         </div>
+        //     </div>
+        // `;
+            //     chatMessages.appendChild(userMsg);
+            //     scrollToBottom();
+            //     chatInput.value = '';
+
+            //     // Gửi tới server
+            //     fetch("{{ route('chat.send') }}", {
+            //             method: 'POST',
+            //             headers: {
+            //                 'Content-Type': 'application/json',
+            //                 'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            //             },
+            //             body: JSON.stringify({
+            //                 message
+            //             })
+            //         })
+            //         .then(res => res.json())
+            //         .then(data => {
+            //             const reply = data.reply || 'Không có phản hồi từ AI.';
+            //             const botMsg = document.createElement('li');
+            //             botMsg.className = 'd-flex justify-content-start mb-3';
+            //             botMsg.innerHTML = `
+        //         <div class="card bg-light">
+        //             <div class="card-body p-2">
+        //                 <p class="mb-0">${reply}</p>
+        //             </div>
+        //         </div>
+        //     `;
+            //             chatMessages.appendChild(botMsg);
+            //             scrollToBottom();
+            //         })
+            //         .catch(error => {
+            //             console.error('Lỗi:', error);
+            //         });
+            // }
         });
     </script>
 
